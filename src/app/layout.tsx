@@ -73,8 +73,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-IN" className={`${dmSerifDisplay.variable} ${manrope.variable}`}>
-      <body>
+    <html
+      lang="en-IN"
+      className={`${dmSerifDisplay.variable} ${manrope.variable}`}
+      suppressHydrationWarning
+    >
+      {/*
+        suppressHydrationWarning: browser extensions (e.g. ColorZilla) inject
+        attributes onto <body> before React hydrates, which would otherwise
+        surface as a harmless but noisy mismatch in development.
+      */}
+      <body suppressHydrationWarning>
         <a
           href="#main"
           className="label sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-olive focus:px-5 focus:py-3 focus:text-ivory"
