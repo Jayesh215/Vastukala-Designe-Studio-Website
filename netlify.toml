@@ -1,0 +1,20 @@
+[build]
+  command = "next build"
+  publish = ".next"
+
+# The @netlify/next runtime is installed automatically — no plugin entry needed.
+# Remote image patterns from next.config.ts are mapped to Netlify Image CDN.
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Next.js fingerprints these filenames, so they can be cached indefinitely.
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
