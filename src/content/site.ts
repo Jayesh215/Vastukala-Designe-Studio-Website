@@ -17,17 +17,15 @@ export const site = {
   /**
    * Logo.
    *
-   * Place the supplied logo file at `public/logo.png` (or .svg / .webp) and set
-   * `src` to its path. The logo is rendered at its natural proportions and is
-   * never recoloured, cropped or restyled. While `src` is null the site falls
-   * back to a typographic wordmark.
+   * Rendered exactly as supplied — original proportions, no recolouring,
+   * cropping or restyling. File lives at `public/logo.jpg`.
    */
   logo: {
-    src: null as string | null,
+    src: "/logo.jpg",
     alt: "Vastukala Design Studio",
-    /** Intrinsic size of your logo file, used to reserve layout space. */
-    width: 560,
-    height: 160,
+    /** Intrinsic pixel size of the logo file. */
+    width: 1024,
+    height: 1024,
   },
 
   contact: {

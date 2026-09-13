@@ -12,22 +12,12 @@ npm run lint
 
 ## Two things to do before going live
 
-1. **Add the logo.** Place the supplied logo file at `public/logo.png` (or `.svg` / `.webp`),
-   then in `src/content/site.ts` set:
+1. **Logo.** The supplied logo is at `public/logo.jpg` and is wired through
+   `src/content/site.ts` → `logo.src`. It is rendered at its original proportions
+   with no recolouring or cropping. To replace it later, overwrite that file
+   (keeping the same path) or update `logo.src` / `width` / `height`.
 
-   ```ts
-   logo: {
-     src: "/logo.png",
-     // ...also set width/height to the file's real pixel dimensions
-   }
-   ```
-
-   Until `src` is set, the header and footer fall back to a typographic wordmark so
-   that nothing on the site invents a logo. The logo is rendered at its original
-   proportions and is never recoloured or cropped.
-
-   Also replace `src/app/icon.svg` (the browser favicon) with an icon version of the
-   logo. The current file is a neutral placeholder monogram.
+   The favicon uses the same artwork at `src/app/icon.jpg`.
 
 2. **Set the live domain.** In `src/content/site.ts`, change `url` from
    `https://vastukaladesignstudio.com` to the real domain. This drives canonical URLs,

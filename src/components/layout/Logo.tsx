@@ -5,36 +5,31 @@ import { site } from "@/content/site";
 /**
  * Brand lockup.
  *
- * When `site.logo.src` points at a logo file the image is rendered as supplied —
- * original proportions, no recolouring, no cropping. Until then a typographic
- * wordmark stands in so nothing on the site invents a logo.
+ * The supplied logo is rendered exactly as provided — original proportions,
+ * no recolouring, cropping or filters. On dark surfaces it sits on a light
+ * plate so the white-background artwork stays readable without altering the
+ * logo itself.
  */
 export function Logo({
   tone = "dark",
   className = "",
+  size = "header",
 }: {
   tone?: "dark" | "light";
   className?: string;
+  /** header = nav bar; footer = larger lockup in the site footer. */
+  size?: "header" | "footer";
 }) {
-  const nameColor = tone === "dark" ? "text-charcoal" : "text-ivory";
-  const descriptorColor = tone === "dark" ? "text-brown" : "text-sand/80";
+  if (!site.logo.src) {
+    const nameColor = tone === "dark" ? "text-charcoal" : "text-ivory";
+    const descriptorColor = tone === "dark" ? "text-brown" : "text-sand/80";
 
-  return (
-    <Link
-      href="/"
-      aria-label={`${site.name} — home`}
-      className={`inline-flex items-center gap-3 ${className}`}
-    >
-      {site.logo.src ? (
-        <Image
-          src={site.logo.src}
-          alt={site.logo.alt}
-          width={site.logo.width}
-          height={site.logo.height}
-          priority
-          className="h-9 w-auto md:h-11"
-        />
-      ) : (
+    return (
+      <Link
+        href="/"
+        aria-label={`${site.name} — home`}
+        className={`inline-flex items-center gap-3 ${className}`}
+      >
         <span className="flex flex-col leading-none">
           <span
             className={`font-display text-[1.0625rem] leading-none tracking-[0.01em] transition-colors duration-500 md:text-xl ${nameColor}`}
@@ -48,7 +43,38 @@ export function Logo({
             {site.descriptor}
           </span>
         </span>
-      )}
+      </Link>
+    );
+  }
+
+  const heightClass =
+    size === "footer"
+      ? "h-20 w-auto sm:h-24"
+      : "h-12 w-auto md:h-14";
+
+  // Light plate keeps the white-background logo legible over dark heroes
+  // without changing the logo artwork.
+  const plate =
+    tone === "light"
+      ? "rounded-md bg-ivory p-1 shadow-[0_1px_0_rgba(32,33,30,0.06)]"
+      : "";
+
+  return (
+    <Link
+      href="/"
+      aria-label={`${site.name} — home`}
+      className={`inline-flex items-center ${className}`}
+    >
+      <span className={`inline-flex ${plate}`}>
+        <Image
+          src={site.logo.src}
+          alt={site.logo.alt}
+          width={site.logo.width}
+          height={site.logo.height}
+          priority
+          className={`${heightClass} object-contain`}
+        />
+      </span>
     </Link>
   );
 }

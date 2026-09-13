@@ -58,7 +58,7 @@ export function Header() {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <Container className="flex h-[4.5rem] items-center justify-between gap-6 md:h-[5.5rem]">
+      <Container className="flex h-[5rem] items-center justify-between gap-6 md:h-[5.75rem]">
         <Logo tone={tone} />
 
         <nav aria-label="Primary" className="hidden lg:block">
@@ -148,7 +148,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.4, ease: EASE }}
-            className="absolute inset-x-0 top-full max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-charcoal/10 bg-ivory lg:hidden"
+            className="absolute inset-x-0 top-full max-h-[calc(100dvh-5rem)] overflow-y-auto border-b border-charcoal/10 bg-ivory lg:hidden"
           >
             <Container className="py-8">
               <ul className="flex flex-col">

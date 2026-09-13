@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { Logo } from "./Logo";
 import { site } from "@/content/site";
 import { whatsappLink } from "@/lib/whatsapp";
 import {
@@ -19,10 +20,8 @@ export function Footer() {
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-5">
-            <p className="font-display text-3xl leading-none md:text-4xl">
-              Vastukala <span className="block">Design Studio</span>
-            </p>
-            <p className="label mt-5 text-sand/80">{site.descriptor}</p>
+            <Logo tone="light" size="footer" />
+            <p className="label mt-6 text-sand/80">{site.descriptor}</p>
             <p className="mt-7 max-w-sm text-[0.9375rem] leading-relaxed text-ivory/60">
               Thoughtful spaces designed around the people who experience them.
             </p>
