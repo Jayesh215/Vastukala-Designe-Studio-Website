@@ -1,52 +1,65 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Design tokens — warm architectural palette + editorial type scale
+   Design tokens — Monteire-inspired light minimal system
    ------------------------------------------------------------------ */
 @theme {
-  --color-olive: #34452a;
-  --color-olive-dark: #253019;
-  --color-olive-light: #4a5f3b;
-  --color-brown: #76563f;
-  --color-brown-light: #96755c;
-  --color-ivory: #f7f5ef;
-  --color-ivory-dim: #efece3;
-  --color-sand: #e7ded1;
-  --color-sand-dark: #d5c8b5;
-  --color-charcoal: #20211e;
-  --color-charcoal-soft: #2b2c28;
-  --color-muted: #6e6b62;
+  /* Primary Monteire palette */
+  --color-canvas: #fafaf8;
+  --color-canvas-dim: #f5f5f3;
+  --color-ink: #111111;
+  --color-ink-soft: #121212;
+  --color-muted: #666666;
+  --color-muted-light: #8a8a8a;
+  --color-line: #e8e8e6;
+  --color-surface: #ffffff;
+  --color-surface-dim: #f0f0ee;
+  /* VistaHaven accent used in header CTA and hero accents */
+  --color-accent: #c8f542;
+  --color-accent-bright: #d4ff5a;
 
-  --font-display:
-    var(--font-dm-serif), "DM Serif Display", ui-serif, Georgia, serif;
-  --font-sans:
-    var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+  /* Aliases so existing utility classes map onto the new system */
+  --color-olive: #111111;
+  --color-olive-dark: #000000;
+  --color-olive-light: #2a2a2a;
+  --color-brown: #666666;
+  --color-brown-light: #8a8a8a;
+  --color-ivory: #fafaf8;
+  --color-ivory-dim: #f5f5f3;
+  --color-sand: #f0f0ee;
+  --color-sand-dark: #e0e0de;
+  --color-charcoal: #111111;
+  --color-charcoal-soft: #1a1a1a;
 
-  /* Fluid editorial display sizes */
-  --text-display-1: clamp(2.9rem, 7.4vw, 6rem);
-  --text-display-1--line-height: 0.96;
-  --text-display-1--letter-spacing: -0.025em;
+  --font-display: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --text-display-2: clamp(2.35rem, 5.2vw, 4.25rem);
-  --text-display-2--line-height: 1.02;
+  /* Fluid display sizes — tighter, sans-led like Monteire */
+  --text-display-1: clamp(2.25rem, 5.5vw, 3.75rem);
+  --text-display-1--line-height: 1.08;
+  --text-display-1--letter-spacing: -0.02em;
+
+  --text-display-2: clamp(1.85rem, 4vw, 3rem);
+  --text-display-2--line-height: 1.12;
   --text-display-2--letter-spacing: -0.02em;
 
-  --text-display-3: clamp(1.9rem, 3.6vw, 3rem);
-  --text-display-3--line-height: 1.08;
+  --text-display-3: clamp(1.5rem, 2.8vw, 2.25rem);
+  --text-display-3--line-height: 1.2;
   --text-display-3--letter-spacing: -0.015em;
 
-  --text-display-4: clamp(1.5rem, 2.4vw, 2.125rem);
-  --text-display-4--line-height: 1.16;
+  --text-display-4: clamp(1.25rem, 2vw, 1.625rem);
+  --text-display-4--line-height: 1.25;
   --text-display-4--letter-spacing: -0.01em;
 
-  --text-lead: clamp(1.0625rem, 1.35vw, 1.3125rem);
-  --text-lead--line-height: 1.65;
+  --text-lead: clamp(1rem, 1.2vw, 1.125rem);
+  --text-lead--line-height: 1.7;
 
   --text-label: 0.6875rem;
   --text-label--line-height: 1.2;
-  --text-label--letter-spacing: 0.22em;
+  --text-label--letter-spacing: 0.14em;
 
   --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --radius-control: 10px;
 }
 
 /* ------------------------------------------------------------------
@@ -54,19 +67,18 @@
    ------------------------------------------------------------------ */
 @layer base {
   * {
-    /* Prevents long words and URLs forcing horizontal overflow on mobile */
     min-width: 0;
   }
 
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 5.5rem;
   }
 
   body {
-    background-color: var(--color-ivory);
-    color: var(--color-charcoal);
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
     font-family: var(--font-sans);
     font-feature-settings: "kern", "liga";
     -webkit-font-smoothing: antialiased;
@@ -79,7 +91,7 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 600;
     text-wrap: balance;
   }
 
@@ -88,17 +100,16 @@
   }
 
   ::selection {
-    background-color: var(--color-olive);
-    color: var(--color-ivory);
+    background-color: var(--color-ink);
+    color: var(--color-canvas);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-olive);
+    outline: 2px solid var(--color-ink);
     outline-offset: 3px;
   }
 
   img {
-    /* Images never contribute to horizontal overflow */
     max-width: 100%;
   }
 }
@@ -107,7 +118,6 @@
    Utilities
    ------------------------------------------------------------------ */
 
-/* Uppercase tracked label used above every section heading */
 @utility label {
   font-size: var(--text-label);
   line-height: var(--text-label--line-height);
@@ -116,21 +126,64 @@
   font-weight: 500;
 }
 
-/* Animated underline for text links */
 @utility link-underline {
   background-image: linear-gradient(currentColor, currentColor);
   background-position: 0 100%;
   background-repeat: no-repeat;
   background-size: 0% 1px;
-  transition: background-size 0.45s var(--ease-editorial);
+  transition: background-size 0.4s var(--ease-editorial);
 
   &:hover {
     background-size: 100% 1px;
   }
 }
 
+/* Slow Y-axis sway for timber model (hero) — kept for that section only */
+@keyframes timber-orbit {
+  0%,
+  100% {
+    transform: rotateY(-16deg) rotateX(3deg);
+  }
+  50% {
+    transform: rotateY(16deg) rotateX(3deg);
+  }
+}
+
+@utility animate-timber-orbit {
+  animation: timber-orbit 9s ease-in-out infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee var(--marquee-duration, 32s) linear infinite;
+  will-change: transform;
+}
+
+@keyframes soft-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@utility animate-soft-float {
+  animation: soft-float 4.5s ease-in-out infinite;
+}
+
 @layer utilities {
-  /* Respect the OS "reduce motion" setting across every animated element */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -139,6 +192,12 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.001ms !important;
       scroll-behavior: auto !important;
+    }
+
+    .animate-timber-orbit,
+    .animate-marquee,
+    .animate-soft-float {
+      animation: none !important;
     }
   }
 }

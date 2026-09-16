@@ -6,23 +6,23 @@ type Variant = "solid" | "outline" | "light" | "outlineLight" | "text";
 type Size = "md" | "lg";
 
 const base =
-  "group inline-flex items-center justify-center gap-2.5 font-medium transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] disabled:cursor-not-allowed disabled:opacity-60";
+  "group inline-flex items-center justify-center gap-2 font-medium transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] disabled:cursor-not-allowed disabled:opacity-60";
 
 const variants: Record<Variant, string> = {
   solid:
-    "bg-olive text-ivory hover:bg-olive-dark rounded-full border border-transparent",
+    "bg-ink text-canvas hover:bg-ink-soft rounded-[10px] border border-transparent",
   outline:
-    "border border-charcoal/25 text-charcoal hover:border-charcoal hover:bg-charcoal hover:text-ivory rounded-full",
+    "border border-ink/15 text-ink hover:border-ink hover:bg-ink hover:text-canvas rounded-[10px]",
   light:
-    "bg-ivory text-charcoal hover:bg-sand rounded-full border border-transparent",
+    "bg-canvas text-ink hover:bg-surface-dim rounded-[10px] border border-transparent",
   outlineLight:
-    "border border-ivory/35 text-ivory hover:bg-ivory hover:text-charcoal rounded-full",
-  text: "text-charcoal hover:text-olive p-0",
+    "border border-canvas/30 text-canvas hover:bg-canvas hover:text-ink rounded-[10px]",
+  text: "text-ink hover:text-muted p-0",
 };
 
 const sizes: Record<Size, string> = {
-  md: "px-6 py-3 text-[0.8125rem] tracking-[0.02em]",
-  lg: "px-8 py-4 text-sm tracking-[0.02em]",
+  md: "px-5 py-2.5 text-[0.8125rem] tracking-[-0.01em]",
+  lg: "px-7 py-3.5 text-[0.875rem] tracking-[-0.01em]",
 };
 
 interface ButtonProps {
@@ -31,9 +31,7 @@ interface ButtonProps {
   variant?: Variant;
   size?: Size;
   className?: string;
-  /** Renders an arrow that slides on hover. */
   arrow?: boolean | "up-right";
-  /** Forces a new tab; external links open in a new tab automatically. */
   newTab?: boolean;
   ariaLabel?: string;
   icon?: ReactNode;
@@ -63,9 +61,9 @@ export function Button({
       {icon}
       <span>{children}</span>
       {arrow === "up-right" ? (
-        <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
       ) : arrow ? (
-        <ArrowRight className="h-3.5 w-3.5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1" />
+        <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1" />
       ) : null}
     </>
   );

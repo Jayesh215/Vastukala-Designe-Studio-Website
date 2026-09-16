@@ -17,19 +17,13 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Every page opens with a dark image hero, so the bar starts transparent
-  // with light text and switches to an opaque blurred ivory bar on scroll.
-  const solid = scrolled || menuOpen;
-  const tone = solid ? "dark" : "light";
-
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 48);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close the panel on navigation and lock scrolling while it is open.
   useEffect(() => setMenuOpen(false), [pathname]);
 
   useEffect(() => {
@@ -52,41 +46,39 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        solid
-          ? "border-b border-charcoal/10 bg-ivory/85 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        scrolled || menuOpen
+          ? "border-line bg-surface/95 backdrop-blur-xl"
+          : "border-transparent bg-surface"
       }`}
     >
-      <Container className="flex h-[5rem] items-center justify-between gap-6 md:h-[5.75rem]">
-        <Logo tone={tone} />
+      <Container className="flex h-[4.5rem] items-center justify-between gap-6 md:h-[5rem]">
+        <Logo tone="dark" />
 
-        <nav aria-label="Primary" className="hidden lg:block">
+        <nav
+          aria-label="Primary"
+          className="absolute left-1/2 hidden -translate-x-1/2 lg:block"
+        >
           <ul className="flex items-center gap-8">
             {site.navigation.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  className={`label relative py-2 transition-colors duration-500 ${
-                    solid
-                      ? isActive(item.href)
-                        ? "text-olive"
-                        : "text-charcoal/65 hover:text-charcoal"
-                      : isActive(item.href)
-                        ? "text-ivory"
-                        : "text-ivory/70 hover:text-ivory"
+                  className={`relative text-[0.9375rem] tracking-[-0.01em] transition-colors duration-300 ${
+                    isActive(item.href)
+                      ? "text-ink"
+                      : "text-muted hover:text-ink"
                   }`}
                 >
                   {item.label}
-                  {isActive(item.href) && (
-                    <span
-                      className={`absolute -bottom-0.5 left-0 h-px w-full ${
-                        solid ? "bg-olive" : "bg-ivory"
-                      }`}
-                      aria-hidden="true"
+                  {isActive(item.href) ? (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute -bottom-1 left-0 h-px w-full bg-ink"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
-                  )}
+                  ) : null}
                 </Link>
               </li>
             ))}
@@ -98,14 +90,16 @@ export function Header() {
             href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className={`label group hidden items-center gap-2.5 rounded-full px-6 py-3 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:inline-flex ${
-              solid
-                ? "bg-olive text-ivory hover:bg-olive-dark"
-                : "bg-ivory/95 text-charcoal hover:bg-ivory"
-            }`}
+            className="group hidden items-center gap-2.5 rounded-full bg-ink py-2 pr-2 pl-4 text-[0.875rem] font-medium text-surface transition-colors duration-300 hover:bg-ink-soft lg:inline-flex"
           >
+            <span
+              className="h-2 w-2 shrink-0 rounded-full bg-accent"
+              aria-hidden="true"
+            />
             {site.primaryCta}
-            <ArrowUpRight className="h-3 w-3 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-surface text-ink transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </span>
           </a>
 
           <button
@@ -114,9 +108,7 @@ export function Header() {
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className={`relative z-10 -mr-1 flex h-11 w-11 cursor-pointer items-center justify-center lg:hidden ${
-              solid ? "text-charcoal" : "text-ivory"
-            }`}
+            className="relative z-10 -mr-1 flex h-11 w-11 cursor-pointer items-center justify-center text-ink lg:hidden"
           >
             <span className="relative block h-3 w-6" aria-hidden="true">
               <motion.span
@@ -124,7 +116,7 @@ export function Header() {
                 animate={
                   menuOpen ? { top: "50%", rotate: 45 } : { top: 0, rotate: 0 }
                 }
-                transition={{ duration: 0.4, ease: EASE }}
+                transition={{ duration: 0.35, ease: EASE }}
               />
               <motion.span
                 className="absolute left-0 block h-px w-full bg-current"
@@ -133,7 +125,7 @@ export function Header() {
                     ? { bottom: "50%", rotate: -45 }
                     : { bottom: 0, rotate: 0 }
                 }
-                transition={{ duration: 0.4, ease: EASE }}
+                transition={{ duration: 0.35, ease: EASE }}
               />
             </span>
           </button>
@@ -144,55 +136,55 @@ export function Header() {
         {menuOpen && (
           <motion.div
             id="mobile-menu"
-            initial={{ opacity: 0, y: -12 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.4, ease: EASE }}
-            className="absolute inset-x-0 top-full max-h-[calc(100dvh-5rem)] overflow-y-auto border-b border-charcoal/10 bg-ivory lg:hidden"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.35, ease: EASE }}
+            className="absolute inset-x-0 top-full max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-line bg-surface lg:hidden"
           >
             <Container className="py-8">
               <ul className="flex flex-col">
                 {site.navigation.map((item, index) => (
                   <motion.li
                     key={item.href}
-                    initial={{ opacity: 0, y: 14 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
-                      duration: 0.5,
-                      delay: 0.06 + index * 0.045,
+                      duration: 0.4,
+                      delay: 0.04 + index * 0.04,
                       ease: EASE,
                     }}
-                    className="border-b border-charcoal/10 last:border-b-0"
+                    className="border-b border-line last:border-b-0"
                   >
                     <Link
                       href={item.href}
-                      className={`flex items-center justify-between py-4 font-display text-2xl ${
-                        isActive(item.href) ? "text-olive" : "text-charcoal"
+                      className={`flex items-center justify-between py-4 font-display text-xl font-semibold ${
+                        isActive(item.href) ? "text-ink" : "text-ink/80"
                       }`}
                     >
                       {item.label}
-                      <ArrowUpRight className="h-4 w-4 text-brown" />
+                      <ArrowUpRight className="h-4 w-4 text-muted" />
                     </Link>
                   </motion.li>
                 ))}
               </ul>
 
               <motion.div
-                initial={{ opacity: 0, y: 14 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.42, ease: EASE }}
+                transition={{ duration: 0.4, delay: 0.35, ease: EASE }}
                 className="mt-8 space-y-3"
               >
                 <a
                   href={whatsappLink()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="label flex w-full items-center justify-center gap-2.5 rounded-full bg-olive px-6 py-4 text-ivory"
+                  className="flex w-full items-center justify-center gap-2.5 rounded-full bg-ink px-6 py-3.5 text-[0.875rem] font-medium text-surface"
                 >
                   <WhatsAppIcon className="h-4 w-4" />
                   {site.primaryCta}
                 </a>
-                <div className="flex flex-col gap-1 pt-3 text-sm text-charcoal/65">
+                <div className="flex flex-col gap-1 pt-3 text-sm text-muted">
                   <a href={`tel:${site.contact.phoneE164}`}>
                     {site.contact.phoneDisplay}
                   </a>

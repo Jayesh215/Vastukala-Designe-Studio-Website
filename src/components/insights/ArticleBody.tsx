@@ -13,7 +13,7 @@ export function ArticleBody({ blocks }: { blocks: InsightBlock[] }) {
           case "heading":
             return (
               <Reveal key={key} y={18}>
-                <h2 className="pt-8 font-display text-[clamp(1.5rem,2.4vw,2.125rem)] leading-tight text-charcoal">
+                <h2 className="pt-8 font-display text-[clamp(1.5rem,2.4vw,2.125rem)] leading-tight text-ink">
                   {block.text}
                 </h2>
               </Reveal>
@@ -22,7 +22,7 @@ export function ArticleBody({ blocks }: { blocks: InsightBlock[] }) {
           case "paragraph":
             return (
               <Reveal key={key} y={16}>
-                <p className="text-[1.0625rem] leading-[1.8] text-charcoal/78">
+                <p className="text-[1.0625rem] leading-[1.8] text-ink/78">
                   {block.text}
                 </p>
               </Reveal>
@@ -31,11 +31,11 @@ export function ArticleBody({ blocks }: { blocks: InsightBlock[] }) {
           case "list":
             return (
               <Reveal key={key} y={16}>
-                <ul className="space-y-3 border-l border-brown/30 pl-6">
+                <ul className="space-y-3 border-l border-line pl-6">
                   {block.items.map((item) => (
                     <li
                       key={item}
-                      className="text-[1.0625rem] leading-relaxed text-charcoal/75"
+                      className="text-[1.0625rem] leading-relaxed text-ink/75"
                     >
                       {item}
                     </li>
@@ -47,8 +47,8 @@ export function ArticleBody({ blocks }: { blocks: InsightBlock[] }) {
           case "quote":
             return (
               <Reveal key={key} y={16}>
-                <blockquote className="my-10 border-t border-b border-charcoal/12 py-8">
-                  <p className="font-display text-[clamp(1.375rem,2.4vw,1.875rem)] leading-snug text-olive">
+                <blockquote className="my-10 border-t border-b border-line py-8">
+                  <p className="font-display text-[clamp(1.375rem,2.4vw,1.875rem)] leading-snug text-ink">
                     {block.text}
                   </p>
                 </blockquote>
@@ -59,7 +59,7 @@ export function ArticleBody({ blocks }: { blocks: InsightBlock[] }) {
             return (
               <Reveal key={key} y={20}>
                 <figure className="my-12">
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-sand">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-dim">
                     <Image
                       src={block.src}
                       alt={block.alt}
@@ -69,7 +69,7 @@ export function ArticleBody({ blocks }: { blocks: InsightBlock[] }) {
                     />
                   </div>
                   {block.caption && (
-                    <figcaption className="mt-4 text-sm text-charcoal/50">
+                    <figcaption className="mt-4 text-sm text-ink/50">
                       {block.caption}
                     </figcaption>
                   )}

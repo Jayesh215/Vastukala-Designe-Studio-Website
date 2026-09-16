@@ -22,12 +22,12 @@ export function ProjectsExplorer({ projects }: { projects: Project[] }) {
     projects.filter((project) => matchesFilter(project, value)).length;
 
   return (
-    <section className="bg-ivory py-16 md:py-24">
+    <section className="bg-canvas py-16 md:py-24">
       <Container>
         <div
           role="tablist"
           aria-label="Filter projects"
-          className="flex flex-wrap items-center gap-2.5 border-b border-charcoal/10 pb-8"
+          className="flex flex-wrap items-center gap-2.5 border-b border-line pb-8"
         >
           {projectFilters.map((value) => {
             const isActive = filter === value;
@@ -41,16 +41,16 @@ export function ProjectsExplorer({ projects }: { projects: Project[] }) {
                 aria-selected={isActive}
                 disabled={count === 0}
                 onClick={() => setFilter(value)}
-                className={`label cursor-pointer rounded-full border px-4.5 py-2.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] disabled:cursor-not-allowed disabled:opacity-35 ${
+                className={`label cursor-pointer rounded-[10px] border px-4.5 py-2.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] disabled:cursor-not-allowed disabled:opacity-35 ${
                   isActive
-                    ? "border-olive bg-olive text-ivory"
-                    : "border-charcoal/15 text-charcoal/60 hover:border-charcoal/40 hover:text-charcoal"
+                    ? "border-ink bg-ink text-canvas"
+                    : "border-line text-ink/60 hover:border-ink/40 hover:text-ink"
                 }`}
               >
                 {value}
                 <span
                   className={`ml-2 text-[0.625rem] ${
-                    isActive ? "text-ivory/60" : "text-charcoal/35"
+                    isActive ? "text-canvas/60" : "text-muted/60"
                   }`}
                 >
                   {String(count).padStart(2, "0")}
@@ -60,7 +60,7 @@ export function ProjectsExplorer({ projects }: { projects: Project[] }) {
           })}
         </div>
 
-        <p className="label mt-8 text-charcoal/45" aria-live="polite">
+        <p className="label mt-8 text-muted" aria-live="polite">
           Showing {visible.length} {visible.length === 1 ? "project" : "projects"}
           {filter !== "All" && ` in ${filter}`}
         </p>
@@ -91,7 +91,7 @@ export function ProjectsExplorer({ projects }: { projects: Project[] }) {
         </motion.div>
 
         {visible.length === 0 && (
-          <p className="py-20 text-center font-display text-2xl text-charcoal/50">
+          <p className="py-20 text-center font-display text-2xl text-ink/50">
             No projects in this category yet.
           </p>
         )}

@@ -48,7 +48,7 @@ export default function AboutPage() {
       />
 
       {/* Intro */}
-      <section className="bg-ivory py-24 md:py-32">
+      <section className="bg-canvas py-24 md:py-32">
         <Container>
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
             <div className="lg:col-span-5">
@@ -69,12 +69,12 @@ export default function AboutPage() {
               </Reveal>
               <TextReveal
                 text={"Good design should not only\nlook beautiful — it should\nwork beautifully."}
-                className="text-display-3 text-charcoal"
+                className="text-display-3 text-ink"
               />
               <div className="mt-9 space-y-6">
                 {about.intro.slice(1).map((paragraph, index) => (
                   <Reveal key={paragraph} delay={0.08 * index}>
-                    <p className="max-w-2xl text-[1.0625rem] leading-relaxed text-charcoal/70">
+                    <p className="max-w-2xl text-[1.0625rem] leading-relaxed text-ink/70">
                       {paragraph}
                     </p>
                   </Reveal>
@@ -94,7 +94,7 @@ export default function AboutPage() {
       <StatsStrip />
 
       {/* Philosophy */}
-      <section className="bg-ivory-dim py-24 md:py-32">
+      <section className="bg-canvas-dim py-24 md:py-32">
         <Container>
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
             <div className="lg:col-span-7">
@@ -105,7 +105,7 @@ export default function AboutPage() {
               <div className="mt-9 space-y-6">
                 {about.philosophy.body.map((paragraph, index) => (
                   <Reveal key={paragraph} delay={0.08 * index}>
-                    <p className="max-w-2xl text-[1.0625rem] leading-relaxed text-charcoal/70">
+                    <p className="max-w-2xl text-[1.0625rem] leading-relaxed text-ink/70">
                       {paragraph}
                     </p>
                   </Reveal>
@@ -115,7 +115,7 @@ export default function AboutPage() {
 
             <div className="lg:col-span-5">
               <Reveal delay={0.15}>
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-sand">
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-surface-dim">
                   <Image
                     src={about.philosophy.image.src}
                     alt={about.philosophy.image.alt}
@@ -131,7 +131,7 @@ export default function AboutPage() {
       </section>
 
       {/* How we think */}
-      <section className="border-t border-charcoal/10 bg-ivory py-24 md:py-32">
+      <section className="border-t border-line bg-canvas py-24 md:py-32">
         <Container>
           <SectionHeading
             eyebrow={about.howWeThink.eyebrow}
@@ -149,15 +149,15 @@ export default function AboutPage() {
               <RevealItem
                 as="li"
                 key={point.title}
-                className="border-t border-charcoal/12 pt-7"
+                className="border-t border-line pt-7"
               >
-                <span className="label text-brown">
+                <span className="label text-muted">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-5 text-display-4 text-charcoal">
+                <h3 className="mt-5 text-display-4 text-ink">
                   {point.title}
                 </h3>
-                <p className="mt-4 text-[0.9375rem] leading-relaxed text-charcoal/65">
+                <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">
                   {point.description}
                 </p>
               </RevealItem>
@@ -167,32 +167,31 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="bg-charcoal py-24 text-ivory md:py-32">
+      <section className="border-t border-line bg-canvas py-20 md:py-28">
         <Container>
           <SectionHeading
             eyebrow="What We Value"
             heading={"Five things we do not\ncompromise on."}
-            tone="light"
             description="Every project, every budget, every scale."
-            layout="split"
+            layout="centered"
           />
 
           <RevealGroup
             as="ul"
             stagger={0.09}
-            className="mt-16 grid gap-x-10 gap-y-10 md:mt-20 md:grid-cols-2 lg:grid-cols-3"
+            className="mt-14 grid gap-x-10 gap-y-10 md:mt-16 md:grid-cols-2 lg:grid-cols-3"
           >
             {about.values.map((value) => (
               <RevealItem
                 as="li"
                 key={value.title}
-                className="border-t border-ivory/18 pt-7"
+                className="border-t border-line pt-7"
               >
-                <span className="label text-sand/60">{value.number}</span>
-                <h3 className="mt-5 text-display-4 text-ivory">
+                <span className="label text-muted">{value.number}</span>
+                <h3 className="mt-5 text-display-4 font-semibold text-ink">
                   {value.title}
                 </h3>
-                <p className="mt-4 text-[0.9375rem] leading-relaxed text-ivory/60">
+                <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">
                   {value.description}
                 </p>
               </RevealItem>
@@ -202,7 +201,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why clients choose us */}
-      <section className="bg-ivory py-24 md:py-32">
+      <section className="bg-canvas py-24 md:py-32">
         <Container>
           <SectionHeading
             eyebrow={about.whyChooseUs.eyebrow}
@@ -220,15 +219,15 @@ export default function AboutPage() {
               <RevealItem
                 as="li"
                 key={reason.title}
-                className="border border-charcoal/12 bg-ivory-dim p-8"
+                className="border border-line bg-canvas-dim p-8"
               >
-                <span className="label text-brown">
+                <span className="label text-muted">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-5 font-display text-xl leading-snug text-charcoal">
+                <h3 className="mt-5 font-display text-xl leading-snug text-ink">
                   {reason.title}
                 </h3>
-                <p className="mt-4 text-[0.9375rem] leading-relaxed text-charcoal/65">
+                <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">
                   {reason.description}
                 </p>
               </RevealItem>

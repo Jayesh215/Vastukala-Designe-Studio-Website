@@ -10,13 +10,13 @@ export function InsightsSection() {
   const [lead, ...rest] = sortedInsights.slice(0, 4);
 
   return (
-    <section className="border-t border-charcoal/10 bg-ivory-dim py-24 md:py-32">
+    <section className="border-t border-line bg-canvas py-20 md:py-28">
       <Container>
         <SectionHeading
           eyebrow="Insights"
           heading={"Ideas for better spaces."}
           description="Practical notes on architecture, interiors, materials and the decisions that shape how a space works."
-          layout="split"
+          layout="centered"
           action={
             <Button href="/insights" variant="outline" arrow>
               Read All Insights
@@ -24,7 +24,7 @@ export function InsightsSection() {
           }
         />
 
-        <div className="mt-16 grid gap-12 md:mt-20 lg:grid-cols-12 lg:gap-16">
+        <div className="mt-14 grid gap-10 md:mt-16 lg:grid-cols-12 lg:gap-12">
           {lead && (
             <Reveal className="lg:col-span-7">
               <InsightCard insight={lead} variant="feature" />
@@ -32,8 +32,8 @@ export function InsightsSection() {
           )}
 
           <RevealGroup
-            stagger={0.1}
-            className="divide-y divide-charcoal/10 border-t border-charcoal/10 lg:col-span-5"
+            stagger={0.08}
+            className="divide-y divide-line border-t border-line lg:col-span-5"
           >
             {rest.map((insight) => (
               <RevealItem key={insight.slug}>

@@ -1,11 +1,7 @@
-import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
 import { TextReveal } from "@/components/motion/TextReveal";
-import { WhatsAppIcon } from "@/components/ui/icons";
-import { images } from "@/content/images";
 import { whatsappLink } from "@/lib/whatsapp";
 
 interface FinalCtaProps {
@@ -18,66 +14,45 @@ interface FinalCtaProps {
   imageAlt?: string;
 }
 
-/** Closing call to action, used at the foot of most pages. */
+/** Closing call to action — dark Monteire band, used at the foot of most pages. */
 export function FinalCta({
   eyebrow = "Start Here",
   heading = "Your space has a story.\nLet's design it.",
   description = "Tell us what you're imagining. We'll help you turn the idea into a thoughtful, beautiful and functional space.",
   whatsappMessage,
-  image = images.livingTall,
-  imageAlt = "Sunlit contemporary living space with tall windows",
 }: FinalCtaProps) {
   return (
-    <section className="relative overflow-hidden bg-charcoal py-28 text-ivory md:py-36">
-      <Image
-        src={image}
-        alt={imageAlt}
-        fill
-        sizes="100vw"
-        className="object-cover opacity-25"
-      />
+    <section className="relative overflow-hidden bg-ink py-20 text-canvas md:py-28">
       <div
-        className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/70 to-charcoal/90"
+        className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-canvas/5 blur-3xl animate-soft-float"
         aria-hidden="true"
       />
 
-      <Container className="relative">
-        <div className="max-w-3xl">
+      <Container>
+        <div className="relative mx-auto max-w-2xl text-center">
           <Reveal>
-            <Eyebrow tone="light" className="mb-7">
-              {eyebrow}
-            </Eyebrow>
+            <p className="label mb-5 text-canvas/55">{eyebrow}</p>
           </Reveal>
 
-          <TextReveal text={heading} className="text-display-2 text-ivory" />
+          <TextReveal
+            text={heading}
+            className="text-display-2 font-semibold text-canvas"
+          />
 
-          <Reveal delay={0.2}>
-            <p className="mt-8 max-w-2xl text-lead text-ivory/70">
+          <Reveal delay={0.12}>
+            <p className="mx-auto mt-6 max-w-lg text-lead text-canvas/65">
               {description}
             </p>
           </Reveal>
 
-          <Reveal
-            delay={0.3}
-            className="mt-11 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
-          >
+          <Reveal delay={0.2} className="mt-10 flex justify-center">
             <Button
               href={whatsappLink(whatsappMessage)}
               variant="light"
               size="lg"
-              className="label"
-              icon={<WhatsAppIcon className="h-4 w-4" />}
+              className="hover:scale-[1.03]"
             >
               Start Your Project
-            </Button>
-            <Button
-              href="/contact"
-              variant="outlineLight"
-              size="lg"
-              className="label"
-              arrow
-            >
-              Get in Touch
             </Button>
           </Reveal>
         </div>

@@ -37,12 +37,12 @@ export function InsightsExplorer({ insights }: { insights: Insight[] }) {
   const [lead, ...rest] = visible;
 
   return (
-    <section className="bg-ivory py-16 md:py-24">
+    <section className="bg-canvas py-16 md:py-24">
       <Container>
         <div
           role="tablist"
           aria-label="Filter articles by category"
-          className="flex flex-wrap items-center gap-2.5 border-b border-charcoal/10 pb-8"
+          className="flex flex-wrap items-center gap-2.5 border-b border-line pb-8"
         >
           {available.map((category) => {
             const isActive = filter === category;
@@ -54,10 +54,10 @@ export function InsightsExplorer({ insights }: { insights: Insight[] }) {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setFilter(category)}
-                className={`label cursor-pointer rounded-full border px-4.5 py-2.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                className={`label cursor-pointer rounded-[10px] border px-4.5 py-2.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   isActive
-                    ? "border-olive bg-olive text-ivory"
-                    : "border-charcoal/15 text-charcoal/60 hover:border-charcoal/40 hover:text-charcoal"
+                    ? "border-ink bg-ink text-canvas"
+                    : "border-line text-ink/60 hover:border-ink/40 hover:text-ink"
                 }`}
               >
                 {category}
@@ -82,7 +82,7 @@ export function InsightsExplorer({ insights }: { insights: Insight[] }) {
             )}
 
             {rest.length > 0 && (
-              <div className="mt-16 grid gap-x-8 gap-y-14 border-t border-charcoal/10 pt-16 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-16 grid gap-x-8 gap-y-14 border-t border-line pt-16 sm:grid-cols-2 lg:grid-cols-3">
                 {rest.map((insight) => (
                   <InsightCard key={insight.slug} insight={insight} />
                 ))}

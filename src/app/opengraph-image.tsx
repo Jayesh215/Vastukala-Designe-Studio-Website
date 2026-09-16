@@ -16,9 +16,9 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#20211E",
+          backgroundColor: "#FAFAF8",
           padding: "72px",
-          fontFamily: "serif",
+          fontFamily: "sans-serif",
         }}
       >
         <div
@@ -26,30 +26,32 @@ export default function OpengraphImage() {
             display: "flex",
             alignItems: "center",
             gap: "16px",
-            fontSize: 20,
-            letterSpacing: "0.22em",
+            fontSize: 18,
+            letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color: "#E7DED1",
-            fontFamily: "sans-serif",
+            color: "#666666",
           }}
         >
-          <div style={{ width: 56, height: 1, backgroundColor: "#76563F" }} />
           Architecture • Interiors
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 104, color: "#F7F5EF", lineHeight: 1.02 }}>
-            Vastukala
-          </div>
-          <div style={{ fontSize: 104, color: "#F7F5EF", lineHeight: 1.02 }}>
-            Design Studio
+          <div
+            style={{
+              fontSize: 72,
+              fontWeight: 600,
+              color: "#111111",
+              lineHeight: 1.08,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Vastukala Design Studio
           </div>
           <div
             style={{
-              marginTop: 28,
-              fontSize: 34,
-              color: "rgba(247,245,239,0.62)",
-              fontFamily: "sans-serif",
+              marginTop: 24,
+              fontSize: 28,
+              color: "#666666",
             }}
           >
             {site.tagline}
@@ -61,10 +63,9 @@ export default function OpengraphImage() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "flex-end",
-            fontSize: 22,
-            color: "rgba(247,245,239,0.5)",
-            fontFamily: "sans-serif",
-            borderTop: "1px solid rgba(247,245,239,0.15)",
+            fontSize: 20,
+            color: "#666666",
+            borderTop: "1px solid #E8E8E6",
             paddingTop: "28px",
           }}
         >

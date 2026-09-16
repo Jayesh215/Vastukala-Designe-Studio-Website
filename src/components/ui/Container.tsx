@@ -2,14 +2,19 @@ import type { ReactNode } from "react";
 
 type Width = "default" | "wide" | "narrow" | "prose";
 
+/**
+ * Layout widths scale with the viewport.
+ * default / wide: full screen width (no fixed max) — only side gutters.
+ * narrow / prose: reading measure only (articles, legal).
+ */
 const widths: Record<Width, string> = {
   narrow: "max-w-3xl",
   prose: "max-w-[42rem]",
-  default: "max-w-[82rem]",
-  wide: "max-w-[96rem]",
+  default: "max-w-none",
+  wide: "max-w-none",
 };
 
-/** Consistent page gutters and max widths across every section. */
+/** Full-bleed page gutters that follow any monitor width. */
 export function Container({
   children,
   className = "",
@@ -21,7 +26,7 @@ export function Container({
 }) {
   return (
     <div
-      className={`mx-auto w-full ${widths[width]} px-5 sm:px-8 lg:px-12 ${className}`}
+      className={`mx-auto w-full ${widths[width]} px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 ${className}`}
     >
       {children}
     </div>

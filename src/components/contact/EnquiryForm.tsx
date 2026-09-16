@@ -41,9 +41,9 @@ const emptyForm: EnquiryDetails = {
 type FieldErrors = Partial<Record<keyof EnquiryDetails, string>>;
 
 const fieldClasses =
-  "w-full border-b border-charcoal/20 bg-transparent py-3 text-[0.9375rem] text-charcoal transition-colors duration-300 outline-none placeholder:text-charcoal/35 focus:border-olive";
+  "w-full border-b border-line bg-transparent py-3 text-[0.9375rem] text-ink transition-colors duration-300 outline-none placeholder:text-muted/60 focus:border-ink";
 
-const labelClasses = "label mb-2 block text-charcoal/50";
+const labelClasses = "label mb-2 block text-muted";
 
 /**
  * Enquiry form that hands off to WhatsApp.
@@ -115,7 +115,7 @@ export function EnquiryForm() {
             className={fieldClasses}
           />
           {errors.fullName && (
-            <p id="fullName-error" className="mt-2 text-xs text-brown">
+            <p id="fullName-error" className="mt-2 text-xs text-muted">
               {errors.fullName}
             </p>
           )}
@@ -139,7 +139,7 @@ export function EnquiryForm() {
             className={fieldClasses}
           />
           {errors.phone && (
-            <p id="phone-error" className="mt-2 text-xs text-brown">
+            <p id="phone-error" className="mt-2 text-xs text-muted">
               {errors.phone}
             </p>
           )}
@@ -162,7 +162,7 @@ export function EnquiryForm() {
             className={fieldClasses}
           />
           {errors.email && (
-            <p id="email-error" className="mt-2 text-xs text-brown">
+            <p id="email-error" className="mt-2 text-xs text-muted">
               {errors.email}
             </p>
           )}
@@ -191,7 +191,7 @@ export function EnquiryForm() {
             ))}
           </select>
           {errors.projectType && (
-            <p id="projectType-error" className="mt-2 text-xs text-brown">
+            <p id="projectType-error" className="mt-2 text-xs text-muted">
               {errors.projectType}
             </p>
           )}
@@ -271,13 +271,13 @@ export function EnquiryForm() {
       <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center">
         <button
           type="submit"
-          className="label group inline-flex cursor-pointer items-center justify-center gap-2.5 rounded-full bg-olive px-8 py-4 text-ivory transition-colors duration-500 hover:bg-olive-dark"
+          className="label group inline-flex cursor-pointer items-center justify-center gap-2.5 rounded-[10px] bg-ink px-8 py-4 text-canvas transition-colors duration-500 hover:bg-ink-soft"
         >
           <WhatsAppIcon className="h-4 w-4" />
           Send Enquiry on WhatsApp
         </button>
 
-        <p className="max-w-xs text-xs leading-relaxed text-charcoal/45">
+        <p className="max-w-xs text-xs leading-relaxed text-muted">
           Your details are formatted into a WhatsApp message — nothing is stored
           on this website.
         </p>
@@ -288,17 +288,17 @@ export function EnquiryForm() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="border border-olive/30 bg-olive/5 p-6"
+          className="border border-ink/30 bg-ink/5 p-6"
           role="status"
         >
-          <p className="font-display text-lg text-olive">
+          <p className="font-display text-lg text-ink">
             WhatsApp should now be open.
           </p>
-          <p className="mt-2 text-[0.9375rem] leading-relaxed text-charcoal/65">
+          <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted">
             If it did not open, copy the message below and send it to{" "}
             <span className="whitespace-nowrap">+91 89567 30655</span>.
           </p>
-          <pre className="mt-5 max-h-52 overflow-auto border border-charcoal/12 bg-ivory p-4 text-xs leading-relaxed whitespace-pre-wrap text-charcoal/70">
+          <pre className="mt-5 max-h-52 overflow-auto border border-line bg-canvas p-4 text-xs leading-relaxed whitespace-pre-wrap text-ink/70">
             {buildEnquiryMessage(form)}
           </pre>
         </motion.div>

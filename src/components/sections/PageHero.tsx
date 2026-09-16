@@ -20,7 +20,7 @@ interface PageHeroProps {
   size?: "default" | "compact";
 }
 
-/** Shared dark image hero used at the top of every inner page. */
+/** Shared light page hero used at the top of every inner page. */
 export function PageHero({
   eyebrow,
   heading,
@@ -32,82 +32,94 @@ export function PageHero({
   action,
   size = "default",
 }: PageHeroProps) {
-  const height =
+  const padding =
     size === "compact"
-      ? "min-h-[52svh] pt-32 pb-14 md:min-h-[58svh] md:pb-18"
-      : "min-h-[66svh] pt-32 pb-16 md:min-h-[72svh] md:pb-20";
+      ? "pt-28 pb-12 md:pt-32 md:pb-14"
+      : "pt-28 pb-14 md:pt-36 md:pb-20";
 
   return (
-    <section
-      className={`relative flex items-end overflow-hidden bg-charcoal ${height}`}
-    >
-      <Image
-        src={image}
-        alt={imageAlt}
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-      />
-      <div
-        className="absolute inset-0 bg-gradient-to-t from-charcoal/88 via-charcoal/55 to-charcoal/40"
-        aria-hidden="true"
-      />
+    <section className={`relative overflow-hidden border-b border-line bg-canvas ${padding}`}>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] opacity-30">
+        <Image
+          src={image}
+          alt=""
+          aria-hidden="true"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center grayscale-[25%]"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-canvas via-canvas/80 to-canvas/40"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-canvas to-transparent"
+          aria-hidden="true"
+        />
+      </div>
 
       <Container className="relative">
-        {breadcrumbs && (
-          <Reveal>
-            <nav aria-label="Breadcrumb" className="mb-6">
-              <ol className="label flex flex-wrap items-center gap-2.5 text-ivory/45">
-                {breadcrumbs.map((crumb, index) => (
-                  <li key={crumb.label} className="flex items-center gap-2.5">
-                    {index > 0 && <span aria-hidden="true">/</span>}
-                    {crumb.href ? (
-                      <Link
-                        href={crumb.href}
-                        className="transition-colors duration-300 hover:text-ivory"
-                      >
-                        {crumb.label}
-                      </Link>
-                    ) : (
-                      <span className="text-ivory/80">{crumb.label}</span>
-                    )}
-                  </li>
-                ))}
-              </ol>
-            </nav>
-          </Reveal>
-        )}
+        <div className="mx-auto max-w-3xl text-center">
+          {breadcrumbs && (
+            <Reveal>
+              <nav aria-label="Breadcrumb" className="mb-5">
+                <ol className="label flex flex-wrap items-center justify-center gap-2.5 text-muted">
+                  {breadcrumbs.map((crumb, index) => (
+                    <li key={crumb.label} className="flex items-center gap-2.5">
+                      {index > 0 && <span aria-hidden="true">/</span>}
+                      {crumb.href ? (
+                        <Link
+                          href={crumb.href}
+                          className="transition-colors duration-300 hover:text-ink"
+                        >
+                          {crumb.label}
+                        </Link>
+                      ) : (
+                        <span className="text-ink/80">{crumb.label}</span>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            </Reveal>
+          )}
 
-        {!breadcrumbs && (
-          <Reveal>
-            <Eyebrow tone="light" className="mb-6">
-              {eyebrow}
-            </Eyebrow>
-          </Reveal>
-        )}
+          {!breadcrumbs && (
+            <Reveal>
+              <Eyebrow className="mb-5 justify-center">{eyebrow}</Eyebrow>
+            </Reveal>
+          )}
 
-        <TextReveal
-          as="h1"
-          text={heading}
-          className="max-w-4xl text-display-2 text-ivory"
-        />
+          <TextReveal
+            as="h1"
+            text={heading}
+            className="text-display-2 font-semibold text-ink"
+          />
 
-        {description && (
-          <Reveal delay={0.2}>
-            <p className="mt-7 max-w-2xl text-lead text-ivory/70">
-              {description}
-            </p>
-          </Reveal>
-        )}
+          {/* Keep imageAlt accessible for SEO/a11y even when decorative fade is used */}
+          <span className="sr-only">{imageAlt}</span>
 
-        {meta && <Reveal delay={0.3}>{meta}</Reveal>}
+          {description && (
+            <Reveal delay={0.12}>
+              <p className="mx-auto mt-5 max-w-xl text-lead text-muted">
+                {description}
+              </p>
+            </Reveal>
+          )}
 
-        {action && (
-          <Reveal delay={0.35} className="mt-10">
-            {action}
-          </Reveal>
-        )}
+          {meta && (
+            <Reveal delay={0.18} className="mt-6">
+              {meta}
+            </Reveal>
+          )}
+
+          {action && (
+            <Reveal delay={0.22} className="mt-8 flex justify-center">
+              {action}
+            </Reveal>
+          )}
+        </div>
       </Container>
     </section>
   );

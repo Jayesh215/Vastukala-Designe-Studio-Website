@@ -10,13 +10,13 @@ export function FeaturedProjects() {
   const [lead, ...rest] = featuredProjects;
 
   return (
-    <section className="bg-ivory py-24 md:py-32">
+    <section className="border-t border-line bg-canvas py-20 md:py-28">
       <Container>
         <SectionHeading
-          eyebrow="Selected Work"
+          eyebrow="Featured Projects"
           heading={"Designed spaces.\nReal stories."}
           description="Explore a selection of spaces designed with purpose, personality and attention to detail."
-          layout="split"
+          layout="centered"
           action={
             <Button href="/projects" variant="outline" arrow>
               View All Projects
@@ -24,7 +24,7 @@ export function FeaturedProjects() {
           }
         />
 
-        <div className="mt-16 md:mt-20">
+        <div className="mt-14 md:mt-16">
           {lead && (
             <RevealGroup>
               <RevealItem>
@@ -34,8 +34,8 @@ export function FeaturedProjects() {
           )}
 
           <RevealGroup
-            stagger={0.12}
-            className="mt-16 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3"
+            stagger={0.1}
+            className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
           >
             {rest.map((project) => (
               <RevealItem key={project.slug} className="h-full">

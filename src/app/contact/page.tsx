@@ -90,7 +90,7 @@ export default function ContactPage() {
       />
 
       {/* Channels */}
-      <section className="border-b border-charcoal/10 bg-ivory py-16 md:py-20">
+      <section className="border-b border-line bg-canvas py-16 md:py-20">
         <Container>
           <RevealGroup
             as="ul"
@@ -103,20 +103,20 @@ export default function ContactPage() {
               const inner = (
                 <>
                   <span className="flex items-center gap-3">
-                    <Icon className="h-4 w-4 text-brown" />
-                    <span className="label text-charcoal/45">
+                    <Icon className="h-4 w-4 text-muted" />
+                    <span className="label text-muted">
                       {channel.label}
                     </span>
                   </span>
                   <span className="mt-4 flex items-start justify-between gap-4">
-                    <span className="font-display text-lg break-words text-charcoal transition-colors duration-500 group-hover:text-olive md:text-xl">
+                    <span className="font-display text-lg break-words text-ink transition-colors duration-500 group-hover:text-muted md:text-xl">
                       {channel.value}
                     </span>
                     {channel.href && (
-                      <ArrowUpRight className="mt-1.5 h-3.5 w-3.5 shrink-0 text-brown transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      <ArrowUpRight className="mt-1.5 h-3.5 w-3.5 shrink-0 text-muted transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                     )}
                   </span>
-                  <span className="mt-3 block text-[0.8125rem] text-charcoal/45">
+                  <span className="mt-3 block text-[0.8125rem] text-muted">
                     {channel.note}
                   </span>
                 </>
@@ -130,12 +130,12 @@ export default function ContactPage() {
                       {...(channel.href.startsWith("http")
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
-                      className="group block border-t border-charcoal/12 pt-6"
+                      className="group block border-t border-line pt-6"
                     >
                       {inner}
                     </a>
                   ) : (
-                    <div className="group block border-t border-charcoal/12 pt-6">
+                    <div className="group block border-t border-line pt-6">
                       {inner}
                     </div>
                   )}
@@ -147,7 +147,7 @@ export default function ContactPage() {
       </section>
 
       {/* Enquiry form */}
-      <section className="bg-ivory py-24 md:py-32">
+      <section className="bg-canvas py-24 md:py-32">
         <Container>
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
             <div className="lg:col-span-4">
@@ -156,38 +156,38 @@ export default function ContactPage() {
               </Reveal>
               <TextReveal
                 text={"Tell us about\nyour project."}
-                className="text-display-3 text-charcoal"
+                className="text-display-3 text-ink"
               />
               <Reveal delay={0.15}>
-                <p className="mt-7 text-[0.9375rem] leading-relaxed text-charcoal/65">
+                <p className="mt-7 text-[0.9375rem] leading-relaxed text-muted">
                   The more you can share about the space, your requirements and
                   your budget, the more useful our first conversation will be.
                 </p>
               </Reveal>
 
               <Reveal delay={0.25}>
-                <div className="mt-10 border-t border-charcoal/12 pt-7">
-                  <p className="label text-charcoal/45">Prefer to talk?</p>
+                <div className="mt-10 border-t border-line pt-7">
+                  <p className="label text-muted">Prefer to talk?</p>
                   <a
                     href={`tel:${site.contact.phoneE164}`}
-                    className="mt-4 block font-display text-2xl text-charcoal transition-colors duration-500 hover:text-olive"
+                    className="mt-4 block font-display text-2xl text-ink transition-colors duration-500 hover:text-muted"
                   >
                     {site.contact.phoneDisplay}
                   </a>
-                  <p className="mt-3 text-[0.8125rem] text-charcoal/45">
+                  <p className="mt-3 text-[0.8125rem] text-muted">
                     {site.contact.workingHours}
                   </p>
                 </div>
               </Reveal>
 
               <Reveal delay={0.3}>
-                <div className="mt-10 border-t border-charcoal/12 pt-7">
-                  <p className="label text-charcoal/45">Areas We Serve</p>
+                <div className="mt-10 border-t border-line pt-7">
+                  <p className="label text-muted">Areas We Serve</p>
                   <ul className="mt-4 flex flex-wrap gap-2">
                     {site.contact.serviceAreas.map((area) => (
                       <li
                         key={area}
-                        className="rounded-full border border-charcoal/12 px-3.5 py-1.5 text-[0.6875rem] tracking-[0.06em] text-charcoal/55 uppercase"
+                        className="rounded-[10px] border border-line px-3.5 py-1.5 text-[0.6875rem] tracking-[0.06em] text-ink/55 uppercase"
                       >
                         {area}
                       </li>
@@ -199,7 +199,7 @@ export default function ContactPage() {
 
             <div className="lg:col-span-8">
               <Reveal delay={0.1}>
-                <div className="border border-charcoal/12 bg-ivory-dim p-7 md:p-12">
+                <div className="border border-line bg-canvas-dim p-7 md:p-12">
                   <EnquiryForm />
                 </div>
               </Reveal>

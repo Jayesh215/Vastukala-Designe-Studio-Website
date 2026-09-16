@@ -21,22 +21,27 @@ export function FaqSection({
   tone = "dark",
   className = "",
 }: FaqSectionProps) {
-  const background = tone === "dark" ? "bg-ivory" : "bg-charcoal";
+  const background = tone === "dark" ? "bg-canvas" : "bg-ink";
 
   return (
     <section
       className={`border-t ${
-        tone === "dark" ? "border-charcoal/10" : "border-transparent"
-      } ${background} py-24 md:py-32 ${className}`}
+        tone === "dark" ? "border-line" : "border-transparent"
+      } ${background} py-20 md:py-28 ${className}`}
     >
       <Container>
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-4">
-            <SectionHeading eyebrow={eyebrow} heading={heading} tone={tone} />
-            <Reveal delay={0.2}>
+            <SectionHeading
+              eyebrow={eyebrow}
+              heading={heading}
+              tone={tone}
+              layout="stacked"
+            />
+            <Reveal delay={0.15}>
               <p
-                className={`mt-7 max-w-sm text-[0.9375rem] leading-relaxed ${
-                  tone === "dark" ? "text-charcoal/60" : "text-ivory/60"
+                className={`mt-6 max-w-sm text-[0.9375rem] leading-relaxed ${
+                  tone === "dark" ? "text-muted" : "text-canvas/65"
                 }`}
               >
                 Still have a question?{" "}
@@ -44,7 +49,7 @@ export function FaqSection({
                   href={whatsappLink(
                     "Hi Vastukala Design Studio, I have a question about your services.",
                   )}
-                  className={tone === "dark" ? "text-olive" : "text-sand"}
+                  className={tone === "dark" ? "text-ink" : "text-canvas"}
                 >
                   Ask us on WhatsApp
                 </TextLink>{" "}

@@ -9,7 +9,7 @@ const lineVariants: Variants = {
   hidden: { y: "110%" },
   visible: (delay: number) => ({
     y: "0%",
-    transition: { duration: 0.95, delay, ease: EASE },
+    transition: { duration: 0.7, delay, ease: EASE },
   }),
 };
 
@@ -24,38 +24,34 @@ interface TextRevealProps {
 
 /**
  * Reveals a heading line by line, each line sliding up from behind a mask.
- *
- * The viewport observer sits on the mask rather than on the moving line: the
- * line starts translated fully outside the mask's overflow-hidden box, so
- * observing it directly reports an empty intersection rect and never triggers.
  */
 export function TextReveal({
   text,
   className,
   as: Tag = "h2",
   delay = 0,
-  stagger = 0.09,
+  stagger = 0.1,
 }: TextRevealProps) {
   const lines = text.split("\n");
 
   return (
     <Tag className={className}>
       {lines.map((line, index) => (
-        <motion.span
+        <span
           key={`${line}-${index}`}
-          className="block overflow-hidden pb-[0.08em]"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
+          className="block overflow-hidden pb-[0.06em]"
         >
           <motion.span
             className="block"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
             variants={lineVariants}
             custom={delay + index * stagger}
           >
-            {line}
+            {line || "\u00A0"}
           </motion.span>
-        </motion.span>
+        </span>
       ))}
     </Tag>
   );

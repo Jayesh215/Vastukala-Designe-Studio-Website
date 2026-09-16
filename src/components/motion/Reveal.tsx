@@ -15,13 +15,13 @@ interface RevealProps {
   as?: "div" | "section" | "li" | "article" | "span";
 }
 
-/** Fades and lifts its children once when they enter the viewport. */
+/** Fades, lifts, and softly scales children once they enter the viewport. */
 export function Reveal({
   children,
   className,
   delay = 0,
-  y = 26,
-  duration = 0.8,
+  y = 28,
+  duration = 0.65,
   as = "div",
 }: RevealProps) {
   const Component = motion[as];
@@ -29,9 +29,9 @@ export function Reveal({
   return (
     <Component
       className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-70px" }}
+      initial={{ opacity: 0, y, scale: 0.985 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-80px", amount: 0.2 }}
       transition={{ duration, delay, ease: EASE }}
     >
       {children}
@@ -42,13 +42,18 @@ export function Reveal({
 const groupVariants: Variants = {
   hidden: {},
   visible: (stagger: number) => ({
-    transition: { staggerChildren: stagger, delayChildren: 0.05 },
+    transition: { staggerChildren: stagger, delayChildren: 0.08 },
   }),
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: EASE } },
+  hidden: { opacity: 0, y: 28, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.6, ease: EASE },
+  },
 };
 
 /**
@@ -58,7 +63,7 @@ const itemVariants: Variants = {
 export function RevealGroup({
   children,
   className,
-  stagger = 0.1,
+  stagger = 0.12,
   as = "div",
 }: {
   children: ReactNode;
@@ -75,7 +80,7 @@ export function RevealGroup({
       custom={stagger}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin: "-70px", amount: 0.15 }}
     >
       {children}
     </Component>

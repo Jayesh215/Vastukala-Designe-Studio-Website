@@ -65,7 +65,7 @@ export default function ServicesPage() {
       />
 
       {/* Service index */}
-      <section className="border-b border-charcoal/10 bg-ivory py-14">
+      <section className="border-b border-line bg-canvas py-14">
         <Container>
           <RevealGroup
             as="ul"
@@ -76,10 +76,10 @@ export default function ServicesPage() {
               <RevealItem as="li" key={service.slug}>
                 <a
                   href={`#${service.slug}`}
-                  className="group flex items-baseline gap-4 border-b border-charcoal/10 py-3 transition-colors duration-500 hover:border-charcoal/30"
+                  className="group flex items-baseline gap-4 border-b border-line py-3 transition-colors duration-500 hover:border-ink/25"
                 >
-                  <span className="label text-brown">{service.number}</span>
-                  <span className="text-[0.9375rem] text-charcoal/70 transition-colors duration-500 group-hover:text-charcoal">
+                  <span className="label text-muted">{service.number}</span>
+                  <span className="text-[0.9375rem] text-ink/70 transition-colors duration-500 group-hover:text-ink">
                     {service.title}
                   </span>
                 </a>
@@ -90,7 +90,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Full service detail */}
-      <section className="bg-ivory">
+      <section className="bg-canvas">
         {services.map((service, index) => {
           const isEven = index % 2 === 0;
 
@@ -98,8 +98,8 @@ export default function ServicesPage() {
             <div
               key={service.slug}
               id={service.slug}
-              className={`scroll-mt-24 border-b border-charcoal/10 py-20 md:py-28 ${
-                isEven ? "bg-ivory" : "bg-ivory-dim"
+              className={`scroll-mt-24 border-b border-line py-20 md:py-28 ${
+                isEven ? "bg-canvas" : "bg-canvas-dim"
               }`}
             >
               <Container>
@@ -110,7 +110,7 @@ export default function ServicesPage() {
                     }`}
                   >
                     <Reveal>
-                      <div className="relative aspect-[4/3] w-full overflow-hidden bg-sand">
+                      <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-dim">
                         <Image
                           src={service.image}
                           alt={service.imageAlt}
@@ -132,17 +132,17 @@ export default function ServicesPage() {
                     <TextReveal
                       as="h2"
                       text={service.headline}
-                      className="text-display-3 text-charcoal"
+                      className="text-display-3 text-ink"
                     />
 
                     <Reveal delay={0.15}>
-                      <p className="mt-7 max-w-2xl text-[1.0625rem] leading-relaxed text-charcoal/70">
+                      <p className="mt-7 max-w-2xl text-[1.0625rem] leading-relaxed text-ink/70">
                         {service.description}
                       </p>
                     </Reveal>
 
                     <Reveal delay={0.2}>
-                      <p className="label mt-10 text-charcoal/45">
+                      <p className="label mt-10 text-muted">
                         What this includes
                       </p>
                     </Reveal>
@@ -156,10 +156,10 @@ export default function ServicesPage() {
                         <RevealItem
                           as="li"
                           key={item}
-                          className="flex items-baseline gap-3 border-b border-charcoal/10 py-3 text-[0.9375rem] text-charcoal/75"
+                          className="flex items-baseline gap-3 border-b border-line py-3 text-[0.9375rem] text-ink/75"
                         >
                           <span
-                            className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brown"
+                            className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted"
                             aria-hidden="true"
                           />
                           {item}
@@ -187,20 +187,19 @@ export default function ServicesPage() {
       </section>
 
       {/* Engagement models */}
-      <section className="bg-charcoal py-24 text-ivory md:py-32">
+      <section className="border-t border-line bg-canvas py-20 md:py-28">
         <Container>
           <SectionHeading
             eyebrow="How We Work Together"
             heading={"Three ways to\nengage the studio."}
-            tone="light"
             description="Pick the level of involvement that suits your project, your contractor and your time."
-            layout="split"
+            layout="centered"
           />
 
           <RevealGroup
             as="ul"
             stagger={0.1}
-            className="mt-16 grid gap-x-10 gap-y-10 md:mt-20 lg:grid-cols-3"
+            className="mt-14 grid gap-x-10 gap-y-10 md:mt-16 lg:grid-cols-3"
           >
             {[
               {
@@ -228,16 +227,16 @@ export default function ServicesPage() {
               <RevealItem
                 as="li"
                 key={model.number}
-                className="border-t border-ivory/18 pt-7"
+                className="border-t border-line pt-7"
               >
-                <span className="label text-sand/60">{model.number}</span>
-                <h3 className="mt-5 text-display-4 text-ivory">
+                <span className="label text-muted">{model.number}</span>
+                <h3 className="mt-5 text-display-4 font-semibold text-ink">
                   {model.title}
                 </h3>
-                <p className="mt-4 text-[0.9375rem] leading-relaxed text-ivory/60">
+                <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">
                   {model.description}
                 </p>
-                <p className="mt-5 text-[0.8125rem] text-sand/70">
+                <p className="mt-5 text-[0.8125rem] text-muted/80">
                   {model.suits}
                 </p>
               </RevealItem>

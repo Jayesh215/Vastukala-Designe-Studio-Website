@@ -17,15 +17,15 @@ export const site = {
   /**
    * Logo.
    *
-   * Rendered exactly as supplied — original proportions, no recolouring,
-   * cropping or restyling. File lives at `public/logo.jpg`.
+   * Transparent PNG lockup — original proportions, no recolouring or cropping.
+   * File lives at `public/logo.png`.
    */
   logo: {
-    src: "/logo.jpg",
+    src: "/logo.png",
     alt: "Vastukala Design Studio",
-    /** Intrinsic pixel size of the logo file. */
-    width: 1024,
-    height: 1024,
+    /** Intrinsic pixel size after trim (wide horizontal lockup). */
+    width: 979,
+    height: 361,
   },
 
   contact: {

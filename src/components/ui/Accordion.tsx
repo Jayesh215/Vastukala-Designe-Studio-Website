@@ -24,10 +24,10 @@ export function Accordion({
   const [open, setOpen] = useState<number | null>(defaultOpen);
   const baseId = useId();
 
-  const border = tone === "dark" ? "border-charcoal/12" : "border-ivory/15";
-  const question = tone === "dark" ? "text-charcoal" : "text-ivory";
-  const answer = tone === "dark" ? "text-charcoal/70" : "text-ivory/65";
-  const mark = tone === "dark" ? "text-brown" : "text-sand";
+  const border = tone === "dark" ? "border-line" : "border-canvas/15";
+  const question = tone === "dark" ? "text-ink" : "text-canvas";
+  const answer = tone === "dark" ? "text-muted" : "text-canvas/70";
+  const mark = tone === "dark" ? "text-muted" : "text-canvas/60";
 
   return (
     <div className={`border-t ${border}`}>
@@ -45,10 +45,10 @@ export function Accordion({
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpen(isOpen ? null : index)}
-                className="flex w-full cursor-pointer items-start justify-between gap-6 py-6 text-left md:py-7"
+                className="flex w-full cursor-pointer items-start justify-between gap-6 py-5 text-left md:py-6"
               >
                 <span
-                  className={`font-display text-lg leading-snug md:text-xl ${question}`}
+                  className={`font-display text-base font-semibold leading-snug md:text-lg ${question}`}
                 >
                   {item.question}
                 </span>
@@ -61,7 +61,7 @@ export function Accordion({
                     className="absolute top-0 left-1/2 h-full w-px -translate-x-1/2 bg-current"
                     animate={{ scaleY: isOpen ? 0 : 1 }}
                     transition={{
-                      duration: 0.35,
+                      duration: 0.3,
                       ease: [0.22, 1, 0.36, 1],
                     }}
                   />
@@ -78,10 +78,12 @@ export function Accordion({
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className={`max-w-3xl pb-7 text-[0.9375rem] leading-relaxed ${answer}`}>
+                  <p
+                    className={`max-w-3xl pb-6 text-[0.9375rem] leading-relaxed ${answer}`}
+                  >
                     {item.answer}
                   </p>
                 </motion.div>

@@ -14,50 +14,42 @@ const paragraphs = [
 
 export function IntroSection() {
   return (
-    <section id="studio" className="scroll-mt-24 bg-ivory py-24 md:py-32">
+    <section id="studio" className="scroll-mt-24 bg-canvas py-20 md:py-28">
       <Container>
-        <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <Reveal>
               <ParallaxImage
                 src={images.staircase}
                 alt="Sculptural timber staircase lit from a skylight above"
-                className="aspect-[3/4] w-full"
+                className="aspect-[4/5] w-full overflow-hidden rounded-[10px]"
                 sizes="(max-width: 1024px) 100vw, 40vw"
-                strength={6}
+                strength={7}
               />
-            </Reveal>
-
-            <Reveal delay={0.15} className="mt-6 hidden lg:block">
-              <p className="max-w-xs text-sm leading-relaxed text-charcoal/50">
-                Vastukala — the science of architecture. We treat it as a
-                discipline with logic behind it, not decoration applied
-                afterwards.
-              </p>
             </Reveal>
           </div>
 
-          <div className="lg:col-span-7 lg:pt-6">
+          <div className="lg:col-span-7 lg:pt-4">
             <Reveal>
-              <Eyebrow className="mb-7">The Studio</Eyebrow>
+              <Eyebrow className="mb-5">The Studio</Eyebrow>
             </Reveal>
 
             <TextReveal
               text={"Design with purpose.\nSpaces with personality."}
-              className="text-display-3 text-charcoal"
+              className="text-display-3 font-semibold text-ink"
             />
 
-            <div className="mt-9 space-y-6">
+            <div className="mt-8 space-y-5">
               {paragraphs.map((paragraph, index) => (
-                <Reveal key={paragraph} delay={0.1 + index * 0.08}>
-                  <p className="max-w-2xl text-[1.0625rem] leading-relaxed text-charcoal/70">
+                <Reveal key={paragraph} delay={0.08 + index * 0.06}>
+                  <p className="max-w-2xl text-[1rem] leading-relaxed text-muted">
                     {paragraph}
                   </p>
                 </Reveal>
               ))}
             </div>
 
-            <Reveal delay={0.35} className="mt-11">
+            <Reveal delay={0.28} className="mt-10">
               <Button href="/about" variant="outline" size="lg" arrow>
                 Discover Vastukala
               </Button>

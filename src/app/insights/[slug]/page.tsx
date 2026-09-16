@@ -89,7 +89,7 @@ export default async function InsightDetailPage({
           { label: insight.category },
         ]}
         meta={
-          <p className="label mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-ivory/55">
+          <p className="label mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-muted">
             <span>{formatInsightDate(insight.date)}</span>
             <span aria-hidden="true">/</span>
             <span>{insight.readingTime}</span>
@@ -99,13 +99,13 @@ export default async function InsightDetailPage({
         }
       />
 
-      <article className="bg-ivory py-20 md:py-28">
+      <article className="bg-canvas py-20 md:py-28">
         <Container>
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             {/* Article */}
             <div className="lg:col-span-8">
               <Reveal>
-                <p className="border-l-2 border-olive pl-6 font-display text-[clamp(1.25rem,2vw,1.625rem)] leading-snug text-charcoal">
+                <p className="border-l-2 border-ink pl-6 font-display text-[clamp(1.25rem,2vw,1.625rem)] leading-snug text-ink">
                   {insight.excerpt}
                 </p>
               </Reveal>
@@ -114,11 +114,11 @@ export default async function InsightDetailPage({
                 <ArticleBody blocks={insight.body} />
               </div>
 
-              <Reveal className="mt-16 border-t border-charcoal/12 pt-10">
-                <p className="font-display text-2xl text-charcoal">
+              <Reveal className="mt-16 border-t border-line pt-10">
+                <p className="font-display text-2xl text-ink">
                   Planning something similar?
                 </p>
-                <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-charcoal/65">
+                <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-ink/65">
                   We are happy to talk through your space before you commit to
                   anything. Send us a message and describe what you have in
                   mind.
@@ -144,9 +144,9 @@ export default async function InsightDetailPage({
             {/* Sidebar */}
             <aside className="lg:col-span-4">
               <div className="lg:sticky lg:top-28">
-                <div className="border border-charcoal/12 bg-ivory-dim p-8">
+                <div className="border border-line bg-canvas-dim p-8">
                   <Eyebrow className="mb-6">In This Journal</Eyebrow>
-                  <p className="text-[0.9375rem] leading-relaxed text-charcoal/65">
+                  <p className="text-[0.9375rem] leading-relaxed text-ink/65">
                     Practical notes on architecture, interiors, materials and
                     space planning — written for people planning their own
                     projects.
@@ -161,19 +161,19 @@ export default async function InsightDetailPage({
                   </Button>
                 </div>
 
-                <div className="mt-8 border border-charcoal/12 p-8">
+                <div className="mt-8 border border-line p-8">
                   <Eyebrow className="mb-6">The Studio</Eyebrow>
-                  <p className="font-display text-xl text-charcoal">
+                  <p className="font-display text-xl text-ink">
                     {site.name}
                   </p>
-                  <p className="label mt-3 text-brown">{site.descriptor}</p>
-                  <p className="mt-5 text-[0.9375rem] leading-relaxed text-charcoal/65">
+                  <p className="label mt-3 text-muted">{site.descriptor}</p>
+                  <p className="mt-5 text-[0.9375rem] leading-relaxed text-ink/65">
                     {site.contact.locationShort}
                   </p>
                   <Button
                     href="/about"
                     variant="text"
-                    className="label mt-6 text-olive"
+                    className="label mt-6 text-ink"
                     arrow
                   >
                     About Us
@@ -187,12 +187,12 @@ export default async function InsightDetailPage({
 
       {/* Related articles */}
       {related.length > 0 && (
-        <section className="border-t border-charcoal/10 bg-ivory-dim py-24 md:py-28">
+        <section className="border-t border-line bg-canvas-dim py-24 md:py-28">
           <Container>
             <Reveal>
               <Eyebrow className="mb-7">Keep Reading</Eyebrow>
             </Reveal>
-            <h2 className="text-display-3 text-charcoal">
+            <h2 className="text-display-3 text-ink">
               More from the journal
             </h2>
 

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { StarIcon, ArrowRight } from "@/components/ui/icons";
+import { ArrowRight } from "@/components/ui/icons";
 import { featuredTestimonials } from "@/content/testimonials";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -27,81 +27,69 @@ export function TestimonialsSection() {
     );
 
   return (
-    <section className="bg-charcoal py-24 text-ivory md:py-32">
+    <section className="border-t border-line bg-canvas py-20 md:py-28">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-4">
-            <Eyebrow tone="light" className="mb-7">
-              Client Testimonials
-            </Eyebrow>
-            <h2 className="text-display-3 text-ivory">
-              What clients say about working with us
-            </h2>
+        <div className="mx-auto max-w-3xl text-center">
+          <Eyebrow className="mb-5 justify-center">Client Testimonials</Eyebrow>
+          <h2 className="text-display-3 font-semibold text-ink">
+            What clients say about working with us
+          </h2>
+        </div>
 
-            <div className="mt-10 flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() => go(-1)}
-                aria-label="Previous testimonial"
-                className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-ivory/25 text-ivory transition-colors duration-500 hover:bg-ivory hover:text-charcoal"
-              >
-                <ArrowRight className="h-4 w-4 rotate-180" />
-              </button>
-              <button
-                type="button"
-                onClick={() => go(1)}
-                aria-label="Next testimonial"
-                className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-ivory/25 text-ivory transition-colors duration-500 hover:bg-ivory hover:text-charcoal"
-              >
-                <ArrowRight className="h-4 w-4" />
-              </button>
-              <span className="label ml-3 text-ivory/45">
-                {String(index + 1).padStart(2, "0")} /{" "}
-                {String(testimonials.length).padStart(2, "0")}
-              </span>
-            </div>
-          </div>
+        <div className="mx-auto mt-12 max-w-3xl border-t border-line pt-10 md:mt-14">
+          <AnimatePresence mode="wait">
+            <motion.figure
+              key={index}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.4, ease: EASE }}
+              className="text-center"
+            >
+              <blockquote>
+                <p className="font-display text-[clamp(1.35rem,2.4vw,1.875rem)] font-semibold leading-[1.35] text-ink">
+                  &ldquo;{active.review}&rdquo;
+                </p>
+              </blockquote>
 
-          <div className="lg:col-span-8">
-            <div className="min-h-[19rem] border-t border-ivory/15 pt-10 md:min-h-[17rem]">
-              <AnimatePresence mode="wait">
-                <motion.figure
-                  key={index}
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.5, ease: EASE }}
-                >
-                  <div
-                    className="flex items-center gap-1 text-sand"
-                    aria-label={`${active.rating} out of 5`}
-                  >
-                    {Array.from({ length: active.rating }).map((_, star) => (
-                      <StarIcon key={star} />
-                    ))}
-                  </div>
+              <figcaption className="mt-8">
+                <p className="font-display text-base font-semibold text-ink">
+                  {active.clientName}
+                </p>
+                <p className="mt-1.5 text-[0.875rem] text-muted">
+                  {active.project}
+                </p>
+                {active.isSample && (
+                  <p className="mx-auto mt-4 max-w-md text-xs leading-relaxed text-muted/70">
+                    Sample content — this placeholder will be replaced with a
+                    verified client review.
+                  </p>
+                )}
+              </figcaption>
+            </motion.figure>
+          </AnimatePresence>
 
-                  <blockquote className="mt-7">
-                    <p className="font-display text-[clamp(1.5rem,2.8vw,2.375rem)] leading-[1.25] text-ivory">
-                      &ldquo;{active.review}&rdquo;
-                    </p>
-                  </blockquote>
-
-                  <figcaption className="mt-9">
-                    <p className="font-display text-lg text-ivory">
-                      {active.clientName}
-                    </p>
-                    <p className="label mt-2 text-sand/65">{active.project}</p>
-                    {active.isSample && (
-                      <p className="mt-5 max-w-md text-xs leading-relaxed text-ivory/35">
-                        Sample content — this placeholder will be replaced with a
-                        verified client review.
-                      </p>
-                    )}
-                  </figcaption>
-                </motion.figure>
-              </AnimatePresence>
-            </div>
+          <div className="mt-10 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => go(-1)}
+              aria-label="Previous testimonial"
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-[10px] border border-line text-ink transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-canvas"
+            >
+              <ArrowRight className="h-4 w-4 rotate-180" />
+            </button>
+            <span className="label mx-2 text-muted">
+              {String(index + 1).padStart(2, "0")} /{" "}
+              {String(testimonials.length).padStart(2, "0")}
+            </span>
+            <button
+              type="button"
+              onClick={() => go(1)}
+              aria-label="Next testimonial"
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-[10px] border border-line text-ink transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-canvas"
+            >
+              <ArrowRight className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </Container>

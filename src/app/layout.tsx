@@ -1,23 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Serif_Display, Manrope } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
+import { LogoLoader } from "@/components/motion/LogoLoader";
 import { PageTransition } from "@/components/motion/PageTransition";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { site } from "@/content/site";
-
-const dmSerifDisplay = DM_Serif_Display({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-  variable: "--font-dm-serif",
-});
 
 const manrope = Manrope({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-manrope",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -62,7 +63,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#34452A",
+  themeColor: "#111111",
   width: "device-width",
   initialScale: 1,
 };
@@ -75,7 +76,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-IN"
-      className={`${dmSerifDisplay.variable} ${manrope.variable}`}
+      className={`${manrope.variable} ${inter.variable}`}
       suppressHydrationWarning
     >
       {/*
@@ -84,9 +85,11 @@ export default function RootLayout({
         surface as a harmless but noisy mismatch in development.
       */}
       <body suppressHydrationWarning>
+        <LogoLoader />
+        <ScrollProgress />
         <a
           href="#main"
-          className="label sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-olive focus:px-5 focus:py-3 focus:text-ivory"
+          className="label sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-[10px] focus:bg-ink focus:px-5 focus:py-3 focus:text-canvas"
         >
           Skip to content
         </a>

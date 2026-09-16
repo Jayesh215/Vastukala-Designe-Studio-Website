@@ -7,19 +7,19 @@ import { processSteps } from "@/content/process";
 /** Home page process overview — the full version lives on /process. */
 export function ProcessSection() {
   return (
-    <section className="border-t border-charcoal/10 bg-ivory py-24 md:py-32">
+    <section className="border-t border-line bg-canvas py-20 md:py-28">
       <Container>
         <SectionHeading
           eyebrow="Our Process"
           heading={"From idea to space."}
           description="Six clear stages, so you always know what is happening, what you are approving and what comes next."
-          layout="split"
+          layout="centered"
           action={
             <Button href="/process" variant="outline" arrow>
               See the Full Process
             </Button>
           }
-          className="mb-16 md:mb-20"
+          className="mb-14 md:mb-16"
         />
       </Container>
 

@@ -80,7 +80,7 @@ export default function ProcessPage() {
         }
       />
 
-      <section className="bg-ivory py-24 md:py-32">
+      <section className="bg-canvas py-24 md:py-32">
         <Container>
           <SectionHeading
             eyebrow="The Stages"
@@ -95,33 +95,34 @@ export default function ProcessPage() {
       </section>
 
       {/* Expectations */}
-      <section className="bg-olive py-24 text-ivory md:py-32">
+      <section className="border-t border-line bg-canvas py-20 md:py-28">
         <Container>
           <SectionHeading
             eyebrow="Working Together"
             heading={"Clear on both sides."}
-            tone="light"
             description="A good project depends as much on how decisions are made as on the design itself."
-            layout="split"
+            layout="centered"
           />
 
-          <div className="mt-16 grid gap-12 md:mt-20 md:grid-cols-2 md:gap-16">
+          <div className="mt-14 grid gap-12 md:mt-16 md:grid-cols-2 md:gap-16">
             {expectations.map((column) => (
               <div key={column.title}>
-                <h3 className="text-display-4 text-ivory">{column.title}</h3>
+                <h3 className="text-display-4 font-semibold text-ink">
+                  {column.title}
+                </h3>
                 <RevealGroup
                   as="ul"
                   stagger={0.08}
-                  className="mt-7 border-t border-ivory/20"
+                  className="mt-7 border-t border-line"
                 >
                   {column.points.map((point) => (
                     <RevealItem
                       as="li"
                       key={point}
-                      className="flex items-baseline gap-4 border-b border-ivory/15 py-4 text-[0.9375rem] leading-relaxed text-ivory/75"
+                      className="flex items-baseline gap-4 border-b border-line py-4 text-[0.9375rem] leading-relaxed text-muted"
                     >
                       <span
-                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-sand"
+                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted/50"
                         aria-hidden="true"
                       />
                       {point}

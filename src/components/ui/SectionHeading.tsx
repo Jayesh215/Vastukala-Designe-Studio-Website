@@ -20,14 +20,14 @@ export function SectionHeading({
   eyebrow,
   heading,
   description,
-  layout = "stacked",
+  layout = "centered",
   tone = "dark",
   as = "h2",
   action,
   className = "",
 }: SectionHeadingProps) {
-  const headingColor = tone === "dark" ? "text-charcoal" : "text-ivory";
-  const bodyColor = tone === "dark" ? "text-charcoal/70" : "text-ivory/70";
+  const headingColor = tone === "dark" ? "text-ink" : "text-canvas";
+  const bodyColor = tone === "dark" ? "text-muted" : "text-canvas/70";
   const headingSize = as === "h1" ? "text-display-2" : "text-display-3";
 
   if (layout === "split") {
@@ -38,7 +38,7 @@ export function SectionHeading({
         <div className="lg:col-span-7">
           {eyebrow && (
             <Reveal>
-              <Eyebrow tone={tone} className="mb-6">
+              <Eyebrow tone={tone} className="mb-5" rule={false}>
                 {eyebrow}
               </Eyebrow>
             </Reveal>
@@ -46,17 +46,17 @@ export function SectionHeading({
           <TextReveal
             as={as}
             text={heading}
-            className={`${headingSize} ${headingColor}`}
+            className={`${headingSize} font-semibold ${headingColor}`}
           />
         </div>
         <div className="lg:col-span-5">
           {description && (
-            <Reveal delay={0.15}>
+            <Reveal delay={0.1}>
               <p className={`max-w-xl text-lead ${bodyColor}`}>{description}</p>
             </Reveal>
           )}
           {action && (
-            <Reveal delay={0.25} className="mt-7">
+            <Reveal delay={0.18} className="mt-7">
               {action}
             </Reveal>
           )}
@@ -71,7 +71,11 @@ export function SectionHeading({
     <div className={`flex flex-col ${alignment} ${className}`}>
       {eyebrow && (
         <Reveal>
-          <Eyebrow tone={tone} className="mb-6">
+          <Eyebrow
+            tone={tone}
+            className={`mb-5 ${layout === "centered" ? "justify-center" : ""}`}
+            rule={false}
+          >
             {eyebrow}
           </Eyebrow>
         </Reveal>
@@ -79,19 +83,23 @@ export function SectionHeading({
       <TextReveal
         as={as}
         text={heading}
-        className={`${headingSize} ${headingColor} ${
-          layout === "centered" ? "max-w-4xl" : "max-w-3xl"
+        className={`${headingSize} font-semibold ${headingColor} ${
+          layout === "centered" ? "max-w-3xl" : "max-w-3xl"
         }`}
       />
       {description && (
-        <Reveal delay={0.15}>
-          <p className={`mt-7 max-w-2xl text-lead ${bodyColor}`}>
+        <Reveal delay={0.1}>
+          <p
+            className={`mt-5 max-w-2xl text-lead ${bodyColor} ${
+              layout === "centered" ? "mx-auto" : ""
+            }`}
+          >
             {description}
           </p>
         </Reveal>
       )}
       {action && (
-        <Reveal delay={0.25} className="mt-9">
+        <Reveal delay={0.18} className="mt-8">
           {action}
         </Reveal>
       )}

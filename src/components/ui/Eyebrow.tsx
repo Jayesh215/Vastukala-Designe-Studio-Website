@@ -4,7 +4,7 @@ interface EyebrowProps {
   children: ReactNode;
   className?: string;
   tone?: "dark" | "light";
-  /** Shows the short rule before the text. */
+  /** Shows the short rule before the text. Default off for Monteire quiet labels. */
   rule?: boolean;
 }
 
@@ -13,10 +13,10 @@ export function Eyebrow({
   children,
   className = "",
   tone = "dark",
-  rule = true,
+  rule = false,
 }: EyebrowProps) {
-  const textTone = tone === "dark" ? "text-brown" : "text-sand";
-  const ruleTone = tone === "dark" ? "bg-brown/40" : "bg-sand/40";
+  const textTone = tone === "dark" ? "text-muted" : "text-canvas/65";
+  const ruleTone = tone === "dark" ? "bg-muted/40" : "bg-canvas/40";
 
   return (
     <p className={`label flex items-center gap-3 ${textTone} ${className}`}>

@@ -15,25 +15,24 @@ export function LegalContent({
   sections,
 }: LegalContentProps) {
   return (
-    <section className="bg-ivory py-20 md:py-28">
+    <section className="bg-canvas py-16 md:py-24">
       <Container>
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* Contents */}
           <aside className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">
-              <p className="label text-charcoal/45">Last updated</p>
-              <p className="mt-3 font-display text-lg text-charcoal">
+              <p className="label text-muted">Last updated</p>
+              <p className="mt-3 font-display text-lg font-semibold text-ink">
                 {lastUpdated}
               </p>
 
               <nav aria-label="On this page" className="mt-10">
-                <p className="label text-charcoal/45">On this page</p>
-                <ol className="mt-5 space-y-2.5 border-t border-charcoal/12 pt-5">
+                <p className="label text-muted">On this page</p>
+                <ol className="mt-5 space-y-2.5 border-t border-line pt-5">
                   {sections.map((section, index) => (
                     <li key={section.heading}>
                       <a
                         href={`#section-${index + 1}`}
-                        className="link-underline text-[0.9375rem] text-charcoal/60 transition-colors duration-300 hover:text-charcoal"
+                        className="link-underline text-[0.9375rem] text-muted transition-colors duration-300 hover:text-ink"
                       >
                         {section.heading}
                       </a>
@@ -44,10 +43,9 @@ export function LegalContent({
             </div>
           </aside>
 
-          {/* Body */}
           <div className="lg:col-span-8">
             <Reveal>
-              <p className="border-l-2 border-olive pl-6 text-[1.0625rem] leading-relaxed text-charcoal/75">
+              <p className="border-l-2 border-ink pl-6 text-[1.0625rem] leading-relaxed text-muted">
                 {intro}
               </p>
             </Reveal>
@@ -56,13 +54,13 @@ export function LegalContent({
               {sections.map((section, index) => (
                 <Reveal
                   key={section.heading}
-                  y={18}
+                  y={14}
                   as="section"
                   className="scroll-mt-28"
                 >
                   <div id={`section-${index + 1}`} className="scroll-mt-28">
-                    <h2 className="font-display text-[clamp(1.375rem,2.2vw,1.875rem)] leading-tight text-charcoal">
-                      <span className="label mr-3 align-middle text-brown">
+                    <h2 className="font-display text-[clamp(1.25rem,2vw,1.625rem)] font-semibold leading-tight text-ink">
+                      <span className="label mr-3 align-middle text-muted">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                       {section.heading}
@@ -71,18 +69,18 @@ export function LegalContent({
                     {section.paragraphs?.map((paragraph) => (
                       <p
                         key={paragraph}
-                        className="mt-5 text-[1.0625rem] leading-[1.8] text-charcoal/70"
+                        className="mt-5 text-[1.0625rem] leading-[1.8] text-muted"
                       >
                         {paragraph}
                       </p>
                     ))}
 
                     {section.list && (
-                      <ul className="mt-6 space-y-3 border-l border-brown/30 pl-6">
+                      <ul className="mt-6 space-y-3 border-l border-line pl-6">
                         {section.list.map((item) => (
                           <li
                             key={item}
-                            className="text-[1.0625rem] leading-relaxed text-charcoal/70"
+                            className="text-[1.0625rem] leading-relaxed text-muted"
                           >
                             {item}
                           </li>

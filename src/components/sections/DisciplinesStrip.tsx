@@ -1,19 +1,24 @@
-import { Container } from "@/components/ui/Container";
+import { Marquee } from "@/components/motion/Marquee";
 import { site } from "@/content/site";
 
-/** Quiet strip of disciplines directly beneath the hero. */
+/** Live scrolling strip of disciplines directly beneath the hero. */
 export function DisciplinesStrip() {
   return (
-    <section className="border-b border-charcoal/10 bg-ivory">
-      <Container className="py-7">
-        <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 md:justify-between md:gap-x-4">
-          {site.disciplines.map((discipline) => (
-            <li key={discipline} className="label text-charcoal/45">
-              {discipline}
-            </li>
-          ))}
-        </ul>
-      </Container>
+    <section
+      className="border-y border-line bg-canvas py-5 md:py-6"
+      aria-label="Disciplines"
+    >
+      <Marquee duration={28} gap="0">
+        {site.disciplines.map((discipline) => (
+          <span
+            key={discipline}
+            className="flex items-center gap-8 px-4 text-[0.8125rem] tracking-[-0.01em] text-muted md:gap-10 md:px-6 md:text-[0.875rem]"
+          >
+            <span className="h-1 w-1 shrink-0 rounded-full bg-ink/35" aria-hidden="true" />
+            {discipline}
+          </span>
+        ))}
+      </Marquee>
     </section>
   );
 }

@@ -70,6 +70,10 @@ export const images = {
 
   // Drawings & technical
   drawings: unsplash("photo-1503387762-592deb58ef4e"),
+  /** ALTURA-style hero drafting board assets */
+  heroSketch: "/images/hero-sketch.jpg",
+  elevationSketch: "/images/elevation-sketch.jpg",
+  timberModel: "/images/timber-model.png",
 } as const;
 
 export type ImageKey = keyof typeof images;
