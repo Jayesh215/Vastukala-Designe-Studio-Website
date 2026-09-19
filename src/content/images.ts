@@ -74,6 +74,11 @@ export const images = {
   heroSketch: "/images/hero-sketch.jpg",
   elevationSketch: "/images/elevation-sketch.jpg",
   timberModel: "/images/timber-model.png",
+
+  /** Avéon-style home hero */
+  heroMaskFront: "/images/hero/mask-front.jpg",
+  heroMaskBack: "/images/hero/mask-back.jpg",
+  heroReel: "/images/hero/reel.jpg",
 } as const;
 
 export type ImageKey = keyof typeof images;

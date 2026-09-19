@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Geist, Instrument_Sans, Inter, Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { LogoLoader } from "@/components/motion/LogoLoader";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
@@ -19,6 +18,35 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+});
+
+const geist = Geist({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-geist",
+});
+
+const instrument = Instrument_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-instrument",
+});
+
+const interDisplay = localFont({
+  src: [
+    {
+      path: "../../public/fonts/InterDisplay-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/InterDisplay-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+  ],
+  variable: "--font-inter-display",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -63,7 +91,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#111111",
+  themeColor: "#F2EDE7",
   width: "device-width",
   initialScale: 1,
 };
@@ -76,7 +104,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-IN"
-      className={`${manrope.variable} ${inter.variable}`}
+      className={`${manrope.variable} ${inter.variable} ${geist.variable} ${interDisplay.variable} ${instrument.variable}`}
       suppressHydrationWarning
     >
       {/*
@@ -93,10 +121,9 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <Header />
-        <PageTransition>{children}</PageTransition>
-        <Footer />
-        <MobileCtaBar />
+        <SiteChrome>
+          <PageTransition>{children}</PageTransition>
+        </SiteChrome>
       </body>
     </html>
   );

@@ -16,7 +16,7 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#FAFAF8",
+          backgroundColor: "#F2EDE7",
           padding: "72px",
           fontFamily: "sans-serif",
         }}
@@ -29,7 +29,7 @@ export default function OpengraphImage() {
             fontSize: 18,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color: "#666666",
+            color: "#6B5E52",
           }}
         >
           Architecture • Interiors
@@ -40,7 +40,7 @@ export default function OpengraphImage() {
             style={{
               fontSize: 72,
               fontWeight: 600,
-              color: "#111111",
+              color: "#2C2218",
               lineHeight: 1.08,
               letterSpacing: "-0.02em",
             }}
@@ -51,7 +51,7 @@ export default function OpengraphImage() {
             style={{
               marginTop: 24,
               fontSize: 28,
-              color: "#666666",
+              color: "#6B5E52",
             }}
           >
             {site.tagline}
@@ -64,8 +64,8 @@ export default function OpengraphImage() {
             justifyContent: "space-between",
             alignItems: "flex-end",
             fontSize: 20,
-            color: "#666666",
-            borderTop: "1px solid #E8E8E6",
+            color: "#6B5E52",
+            borderTop: "1px solid #DDD4C8",
             paddingTop: "28px",
           }}
         >

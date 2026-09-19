@@ -41,11 +41,11 @@ export function Logo({
     );
   }
 
-  /* Wide lockup — sized to clear the flourish without a white plate */
+  /* Wide lockup — compact in the Framer-style header, larger in the footer */
   const heightClass =
     size === "footer"
       ? "h-14 w-auto sm:h-16"
-      : "h-10 w-auto sm:h-11 md:h-12";
+      : "h-9 w-auto sm:h-10";
 
   return (
     <Link

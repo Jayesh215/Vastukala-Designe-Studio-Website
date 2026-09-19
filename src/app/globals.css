@@ -1,37 +1,37 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Design tokens — Monteire-inspired light minimal system
+   Design tokens — Avéon / hero-matched warm cream system
    ------------------------------------------------------------------ */
 @theme {
-  /* Primary Monteire palette */
-  --color-canvas: #fafaf8;
-  --color-canvas-dim: #f5f5f3;
-  --color-ink: #111111;
-  --color-ink-soft: #121212;
-  --color-muted: #666666;
-  --color-muted-light: #8a8a8a;
-  --color-line: #e8e8e6;
-  --color-surface: #ffffff;
-  --color-surface-dim: #f0f0ee;
-  /* VistaHaven accent used in header CTA and hero accents */
-  --color-accent: #c8f542;
-  --color-accent-bright: #d4ff5a;
+  /* Hero-aligned palette: cream, beige, warm ink, bronze accent */
+  --color-canvas: #f2ede7;
+  --color-canvas-dim: #e8e0d6;
+  --color-ink: #2c2218;
+  --color-ink-soft: #1a1510;
+  --color-muted: #6b5e52;
+  --color-muted-light: #8a7b6c;
+  --color-line: #ddd4c8;
+  --color-surface: #faf7f2;
+  --color-surface-dim: #ede6dc;
+  --color-accent: #b8845c;
+  --color-accent-bright: #c9986e;
 
   /* Aliases so existing utility classes map onto the new system */
-  --color-olive: #111111;
-  --color-olive-dark: #000000;
-  --color-olive-light: #2a2a2a;
-  --color-brown: #666666;
-  --color-brown-light: #8a8a8a;
-  --color-ivory: #fafaf8;
-  --color-ivory-dim: #f5f5f3;
-  --color-sand: #f0f0ee;
-  --color-sand-dark: #e0e0de;
-  --color-charcoal: #111111;
-  --color-charcoal-soft: #1a1a1a;
+  --color-olive: #2c2218;
+  --color-olive-dark: #1a1510;
+  --color-olive-light: #3d3228;
+  --color-brown: #6b5e52;
+  --color-brown-light: #8a7b6c;
+  --color-ivory: #f2ede7;
+  --color-ivory-dim: #e8e0d6;
+  --color-sand: #ede6dc;
+  --color-sand-dark: #ddd4c8;
+  --color-charcoal: #2c2218;
+  --color-charcoal-soft: #1a1510;
 
-  --font-display: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter-display), "Inter Display", var(--font-manrope),
+    "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
 
   /* Fluid display sizes — tighter, sans-led like Monteire */
@@ -58,7 +58,7 @@
   --text-label--line-height: 1.2;
   --text-label--letter-spacing: 0.14em;
 
-  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-editorial: cubic-bezier(0.12, 0.23, 0.5, 1);
   --radius-control: 10px;
 }
 
@@ -80,7 +80,7 @@
     background-color: var(--color-canvas);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-feature-settings: "kern", "liga";
+    font-feature-settings: "kern", "liga", "cv03", "cv04", "cv09", "cv11", "blwf";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
@@ -181,6 +181,209 @@
 
 @utility animate-soft-float {
   animation: soft-float 4.5s ease-in-out infinite;
+}
+
+/* ------------------------------------------------------------------
+   Avéon home hero — scoped so the rest of the site is unchanged
+   ------------------------------------------------------------------ */
+.hero-aveon {
+  --hero-text: #2c2218;
+  font-feature-settings: "kern", "liga", "cv03", "cv04", "cv09", "cv11", "blwf";
+}
+
+/* Shared cream paper — matches hero WebGL base (#E8E0D6) + soft grain */
+.paper-surface {
+  background-color: #e8e0d6;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.78 0 0 0 0 0.74 0 0 0 0 0.68 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ------------------------------------------------------------------
+   ArcGrid theme — Framer ArcGrid-copy pages (about/services/…)
+   ------------------------------------------------------------------ */
+.theme-arc {
+  --arc-bg: #f5f5f5;
+  --arc-white: #ffffff;
+  --arc-black: #000000;
+  --arc-body: #3c4354;
+  --arc-muted: #8b919c;
+  --arc-line: #e6e6e6;
+  --arc-radius: 28px;
+  --arc-radius-sm: 16px;
+  --arc-pill: 999px;
+  background-color: var(--arc-bg);
+  color: var(--arc-black);
+  font-family: var(--font-instrument), "Instrument Sans", ui-sans-serif, system-ui,
+    sans-serif;
+}
+
+.theme-arc h1,
+.theme-arc h2,
+.theme-arc h3,
+.theme-arc h4 {
+  font-family: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.arc-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: 20px;
+}
+
+@media (min-width: 810px) {
+  .arc-container {
+    padding-inline: 40px;
+  }
+}
+
+.arc-eyebrow {
+  color: var(--arc-muted);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+.arc-h1 {
+  font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.arc-h2 {
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+.arc-body {
+  color: var(--arc-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.arc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: var(--arc-pill);
+  padding: 0.85rem 1.4rem;
+  font-size: 14px;
+  font-weight: 500;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease, color 0.3s ease;
+}
+
+.arc-btn:hover {
+  transform: scale(1.02);
+}
+
+.arc-btn-primary {
+  background: var(--arc-black);
+  color: var(--arc-white);
+}
+
+.arc-btn-secondary {
+  background: var(--arc-white);
+  color: var(--arc-black);
+  border: 1px solid var(--arc-black);
+}
+
+.site-header {
+  font-feature-settings: "kern", "liga", "cv03", "cv04", "cv09", "cv11", "blwf";
+}
+
+.site-header-link {
+  color: #2c2218;
+  font-family: var(--font-inter-display), "Inter Display", ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.site-header-cta {
+  font-family: var(--font-inter-display), "Inter Display", ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.hero-h1 {
+  color: var(--hero-text);
+  font-family: var(--font-geist), "Geist", ui-sans-serif, system-ui, sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 1em;
+}
+
+.hero-body {
+  color: var(--hero-text);
+  font-family: var(--font-inter-display), "Inter Display", ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0em;
+  line-height: 1.4em;
+}
+
+.hero-caption,
+.hero-caption-sm {
+  color: var(--hero-text);
+  font-family: var(--font-inter-display), "Inter Display", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2em;
+  text-transform: uppercase;
+}
+
+.hero-caption {
+  font-size: 14px;
+}
+
+.hero-caption-sm {
+  font-size: 12px;
+}
+
+.hero-btn-label {
+  color: var(--hero-text);
+  font-family: var(--font-inter-display), "Inter Display", ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0em;
+  line-height: 1.5em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .hero-h1 {
+    font-size: 80px;
+  }
+
+  .hero-caption-sm {
+    font-size: 13px;
+  }
+
+  .hero-btn-label {
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 1350px) {
+  .hero-h1 {
+    font-size: 100px;
+  }
+
+  .hero-btn-label {
+    font-size: 14px;
+  }
 }
 
 @layer utilities {

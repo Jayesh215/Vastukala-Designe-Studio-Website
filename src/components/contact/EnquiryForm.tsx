@@ -45,6 +45,24 @@ const fieldClasses =
 
 const labelClasses = "label mb-2 block text-muted";
 
+function openWhatsApp(url: string) {
+  // Do not pass "noopener" in windowFeatures — browsers then return null even
+  // when the tab opens, which broke the previous fallback detection.
+  const popup = window.open(url, "_blank");
+
+  if (popup) {
+    try {
+      popup.opener = null;
+    } catch {
+      // Ignore cross-origin / hardened browser restrictions.
+    }
+    return;
+  }
+
+  // Popup blocked (common on mobile) — continue in this tab.
+  window.location.assign(url);
+}
+
 /**
  * Enquiry form that hands off to WhatsApp.
  *
@@ -55,6 +73,7 @@ export function EnquiryForm() {
   const [form, setForm] = useState<EnquiryDetails>(emptyForm);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [sent, setSent] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState("");
 
   const update = (field: keyof EnquiryDetails, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -84,14 +103,18 @@ export function EnquiryForm() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!validate()) return;
+    if (!validate()) {
+      const firstError = document.querySelector("[aria-invalid='true']");
+      if (firstError instanceof HTMLElement) {
+        firstError.focus();
+        firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return;
+    }
 
     const url = enquiryWhatsappLink(form);
-    const opened = window.open(url, "_blank", "noopener,noreferrer");
-
-    // If the popup was blocked, navigate in the current tab instead.
-    if (!opened) window.location.href = url;
-
+    setWhatsappUrl(url);
+    openWhatsApp(url);
     setSent(true);
   };
 
@@ -115,7 +138,7 @@ export function EnquiryForm() {
             className={fieldClasses}
           />
           {errors.fullName && (
-            <p id="fullName-error" className="mt-2 text-xs text-muted">
+            <p id="fullName-error" className="mt-2 text-xs text-red-700">
               {errors.fullName}
             </p>
           )}
@@ -139,7 +162,7 @@ export function EnquiryForm() {
             className={fieldClasses}
           />
           {errors.phone && (
-            <p id="phone-error" className="mt-2 text-xs text-muted">
+            <p id="phone-error" className="mt-2 text-xs text-red-700">
               {errors.phone}
             </p>
           )}
@@ -162,7 +185,7 @@ export function EnquiryForm() {
             className={fieldClasses}
           />
           {errors.email && (
-            <p id="email-error" className="mt-2 text-xs text-muted">
+            <p id="email-error" className="mt-2 text-xs text-red-700">
               {errors.email}
             </p>
           )}
@@ -191,7 +214,7 @@ export function EnquiryForm() {
             ))}
           </select>
           {errors.projectType && (
-            <p id="projectType-error" className="mt-2 text-xs text-muted">
+            <p id="projectType-error" className="mt-2 text-xs text-red-700">
               {errors.projectType}
             </p>
           )}
@@ -291,11 +314,18 @@ export function EnquiryForm() {
           className="border border-ink/30 bg-ink/5 p-6"
           role="status"
         >
-          <p className="font-display text-lg text-ink">
-            WhatsApp should now be open.
-          </p>
+          <p className="font-display text-lg text-ink">Opening WhatsApp…</p>
           <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted">
-            If it did not open, copy the message below and send it to{" "}
+            If it did not open,{" "}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-ink underline underline-offset-2"
+            >
+              tap here to continue on WhatsApp
+            </a>{" "}
+            or copy the message below and send it to{" "}
             <span className="whitespace-nowrap">+91 89567 30655</span>.
           </p>
           <pre className="mt-5 max-h-52 overflow-auto border border-line bg-canvas p-4 text-xs leading-relaxed whitespace-pre-wrap text-ink/70">
