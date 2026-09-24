@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import type { ElementType } from "react";
+import type { ReactNode } from "react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -13,11 +13,13 @@ const lineVariants: Variants = {
   }),
 };
 
+type TextTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div" | "span";
+
 interface TextRevealProps {
   /** Use "\n" to force a line break; each line reveals from behind a mask. */
   text: string;
   className?: string;
-  as?: ElementType;
+  as?: TextTag;
   delay?: number;
   stagger?: number;
 }
@@ -34,25 +36,23 @@ export function TextReveal({
 }: TextRevealProps) {
   const lines = text.split("\n");
 
-  return (
-    <Tag className={className}>
-      {lines.map((line, index) => (
-        <span
-          key={`${line}-${index}`}
-          className="block overflow-hidden pb-[0.06em]"
-        >
-          <motion.span
-            className="block"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={lineVariants}
-            custom={delay + index * stagger}
-          >
-            {line || "\u00A0"}
-          </motion.span>
-        </span>
-      ))}
-    </Tag>
-  );
+  const content: ReactNode = lines.map((line, index) => (
+    <span
+      key={`${line}-${index}`}
+      className="block overflow-hidden pb-[0.06em]"
+    >
+      <motion.span
+        className="block"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-60px" }}
+        variants={lineVariants}
+        custom={delay + index * stagger}
+      >
+        {line || "\u00A0"}
+      </motion.span>
+    </span>
+  ));
+
+  return <Tag className={className}>{content}</Tag>;
 }

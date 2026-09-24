@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Logo } from "@/components/layout/Logo";
-import { site } from "@/content/site";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
